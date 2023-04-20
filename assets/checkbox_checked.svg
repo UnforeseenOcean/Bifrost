@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 32">
+  <defs>
+    <style>
+      .cls-2{fill:#8a8c8c}.cls-3{fill:#43464a}.cls-4{fill:#828585}.cls-5{fill:#696a6a}.cls-6{fill:#555658}.cls-7{fill:#adadac}
+    </style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path fill="#f2f2f2" d="M6 8h20v19H6z"/>
+      <path d="M31 26v1c-2 0-1 1-1 2v1h-1c0-1 1-2-1-3l1-2V8a21 21 0 0 0 0-3V2h1l1 1v1l-1 2v18l1 2Z" class="cls-2"/>
+      <path d="M0 28v-1l1-2V7L0 6V4l1-1V2h1v26a5 5 0 0 1 0 1Z" class="cls-3"/>
+      <path d="M29 0v1h-4l1-1Z" class="cls-4"/>
+      <path d="M6 0v1H4V0Z" class="cls-2"/>
+      <path d="M31 29h-1c0-1-1-2 1-2Z" class="cls-5"/>
+      <path d="M0 25h1l-1 2Z" class="cls-4"/>
+      <path d="m31 5-1 1 1-2Z" class="cls-6"/>
+      <path d="M0 3h1L0 4Z" class="cls-4"/>
+      <path d="M4 0v1H2l1-1Z" class="cls-5"/>
+      <path d="M5 32h2ZM28 32h-3Z" class="cls-7"/>
+      <path d="M2 29a5 5 0 0 0 0-1V2h24v3a7 7 0 0 0 2 1V5a1 1 0 0 1 1 0 21 21 0 0 1 0 3v17l-1 2-2-1-1 2c1 2 2 2 3 0v-1c2 1 1 2 1 3l-12-1H3a3 3 0 0 0-1 0Zm3-1 1-1c-1-1-2-2-3 0-1 1 0 1 1 2a1 1 0 0 0 2-1ZM3 4v1c0 1 1 2 3 1V5C5 3 5 3 4 4Zm4 20v1l13 1h3l1-1a11 11 0 0 0 1-2V11l-4-3-2 1V8h3l2 1h1V7L6 6l1 1v5l1 2-1 2a6 6 0 0 0-1 1l1 2Z" class="cls-4"/>
+      <path d="M2 29a3 3 0 0 1 1 0h14l12 1h1l-1 1a10 10 0 0 1-1 1h-3a2 2 0 0 0-1-1H10l-3 1H5Z" class="cls-3"/>
+      <path d="M26 3V2H1l1-1h27l1 1h-1l-2 1Z" class="cls-7"/>
+      <path d="M26 3h3v1l-1 1v1l-2-2ZM28 27v1c-2 1-2 0-2-1v-1l2 1Z" class="cls-5"/>
+      <path d="M29 3h-2l2-1Z" class="cls-4"/>
+      <path d="m28 5 1-1v1a1 1 0 0 0-1 0Z" class="cls-6"/>
+      <path d="m13 16-1-1v-1l-3-3-1 3-1-2V7l12 1v2l-1 1-1 1v1l-1 1-1 1v1Z" class="cls-5"/>
+      <path d="m6 17 6 5 2 2 10-11 1-2v12a11 11 0 0 1-1 2V14l-6 6-3 4h-2a3 3 0 0 0-1-1l-5-4-1-2ZM19 8 7 7 6 6l19 1v2h-1V8h-2Z" class="cls-3"/>
+      <path d="M13 24h2l9 1-1 1h-3L7 25v-1Z" class="cls-7"/>
+      <path d="M13 24H7v-5l5 4a3 3 0 0 1 1 1ZM4 4c1-1 1-1 2 1v1a3 3 0 0 0-1 0 1 1 0 0 1-2-2ZM3 27c1-2 2-1 2 0v1h1-2Z" class="cls-5"/>
+      <path d="M26 26v1c0 1 0 2 2 1-1 2-2 2-3 0Z" class="cls-6"/>
+      <path d="M22 8h2v1Z" class="cls-5"/>
+      <path d="M3 4a1 1 0 0 0 2 2 3 3 0 0 1 1 0C4 7 3 6 3 5ZM3 27l1 1h2a1 1 0 0 1-2 1c-1-1-2-1-1-2ZM26 4l2 2a7 7 0 0 1-2-1V4ZM5 28l1-1ZM4 4H3Z" class="cls-6"/>
+      <path d="m8 14 1-3 3 3v1l-2-3ZM13 16h2l-1 1ZM17 12l1-1ZM16 14l1-1ZM15 15l1-1ZM15 16v-1ZM18 11l1-1ZM19 10V9Z" class="cls-4"/>
+      <path d="m24 25-9-1 3-4 6-6Z" class="cls-5"/>
+    </g>
+  </g>
+</svg>
