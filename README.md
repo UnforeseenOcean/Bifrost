@@ -22,9 +22,9 @@ Bifrost supports all image formats supported by the game.
 
 The following two images show the output of the tool, which would be useful to be included inside videos, GIFs, etc.
 
-![Song Info](https://github.com/UnforeseenOcean/UnforeseenOcean.github.io/raw/master/bifrost/rm-imgs/songinfo-demo.png "Song info screen")
+![Song Info](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/songinfo-demo.png "Song info screen")
 
-![Stats](https://github.com/UnforeseenOcean/UnforeseenOcean.github.io/raw/master/bifrost/rm-imgs/stats-demo.png "Stats screen")
+![Stats](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/stats-demo.png "Stats screen")
 
 # Limitations
 - Since this is an online tool (though no data is saved or transmitted to online servers) you are required to have an internet connection.
