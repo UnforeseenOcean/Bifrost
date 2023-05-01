@@ -2,7 +2,7 @@
 
 This version is for independent use of the program away from online CDN, and is intended to be downloaded into user's disk. Please clone or download this repository to use it!
 
-![Logo](https://github.com/UnforeseenOcean/UnforeseenOcean.github.io/raw/master/bifrost/rm-imgs/logo.png "Bifrost Logo")
+![Logo](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/logo.png "Bifrost Logo")
 
 Bifrost is a thumbnail generator for videos about Ragnarock, a VR rhythm game and soon-to-be-a-PC-game. You can easily create informative graphics about your scores and stats, without having to use an image editor.
 
@@ -22,9 +22,9 @@ Bifrost supports all image formats supported by the game.
 
 The following two images show the output of the tool, which would be useful to be included inside videos, GIFs, etc.
 
-![Song Info](https://github.com/UnforeseenOcean/UnforeseenOcean.github.io/raw/master/bifrost/rm-imgs/songinfo-demo.png "Song info screen")
+![Song Info](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/songinfo-demo.png "Song info screen")
 
-![Stats](https://github.com/UnforeseenOcean/UnforeseenOcean.github.io/raw/master/bifrost/rm-imgs/stats-demo.png "Stats screen")
+![Stats](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/stats-demo.png "Stats screen")
 
 # Limitations
 - Since this is an online tool (though no data is saved or transmitted to online servers) you are required to have an internet connection.
