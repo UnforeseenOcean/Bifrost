@@ -449,7 +449,7 @@
 			flex-direction: row;
 		}
 		body {
-			background-image: url("assets/debug_bg.png");
+			background-image: url("assets/debug_bglq.png");
 			overflow: hidden;
 			background-repeat: no-repeat; 
    			background-color: #222842;
@@ -1030,6 +1030,12 @@
 				  <input type="text" class="numberinput" name="authorinput" id="customauthor" value="Blackbeard" onChange="updateAuthor()">
 				  <label for="customauthor" class="padding-left-fix" maxlength="32">Author</label>
 				  </div>
+				  
+				  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleLQ" id="lq" onChange="toggleLQ()" checked>
+				  <label for="toggleLQ" class="padding-left-fix">Low Bandwidth BG</label>
+				  </div>
+				  
 				  <!--<div class="binder fix-checkbox">
 				  <input type="checkbox" class="checkbox_custom" name="toggleexplicit" id="explicit-yn" onChange="toggleExplicit()">
 				  <label for="explicit-yn" class="padding-left-fix">Is Explicit</label>
@@ -1196,6 +1202,7 @@
 			customCheckbox("togglediff");
 			customCheckbox("togglecustom");
 			customCheckbox("toggleexplicit");
+			customCheckbox("toggleLQ");
 			console.log(version);
 		});
 	</script>
@@ -1204,7 +1211,7 @@
     <!--<script src="js/bootstrap-4.4.1.js"></script>-->
 	  <script src="js/jquery.editable.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/html2canvas.min.js"></script>
+	<script src="js/html2canvas.js"></script>
 	<script src="js/tippy-bundle.umd.min.js"></script>
 	  <script src="js/sweetalert2.js"></script>
 	  <script src="js/fitty.min.js"></script>
@@ -1256,6 +1263,8 @@
 		  	const silvertippy = tippy("#silver-medal");
 		  tippy("#gold-medal", {content: ["Click to set medal! To hide all medals, use Unranked option in menu."],});
 		  	const goldtippy = tippy("#gold-medal");
+		  tippy("#lq", {content: ["Enable/disable low bandwidth background for slower connections."],});
+		  	const lqtippy = tippy("#lq");
 		  
 		  //console.log(albumarttippy);
 		  
@@ -1480,6 +1489,7 @@
 		  var csnState = true;
 		  var mdlState = false;
 		  var medalCount = 1;
+		  var lqmode = true;
 		  
 		  function toggleMedals(){
 			  // var state = $("#showmedals").is(":checked");
@@ -1516,6 +1526,19 @@
 			  }
 		  }
 		  
+		  function toggleLQ(){
+			  //var state = $("#lq").is(":checked");
+			  if (lqmode == true){
+				  $("#lq").prop("checked", false);
+				  lqmode = false;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+			  else if (lqmode == false){
+				  $("#lq").prop("checked", true);
+				  lqmode = true;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+		  }
 		  
 		  function toggleExplicit() {
 			  // var state = $("#explicit-yn").is(":checked");
@@ -1535,17 +1558,32 @@
 		  function updateBG(){
 			  // There is a way better way to do this but I can't make it work
 			  var which = $(".bgselector:checked").attr("id");
+			  if (lqmode == true) {
+				  which = which + "lb";
+			  }
+			  else {
+				which = which;  
+			  }
 			  if (which != "bgc"){
 				  $('body').css('background-image', "url('assets/"+which+".png')");
 			  }
 			  if (bg_custom == undefined && which == "bgc") {
+				  console.info("Custom Background - undefined hq");
 				  $('body').css('background-image', "url('assets/custom_bg_tmp.png')");
 			  }
-			  else if (which == "bgc") {
+			  else if (bg_custom == undefined && which == "bgclb") {
+				  console.info("Custom Background - undefined lq");
+				  $('body').css('background-image', "url('assets/custom_bg_tmplb.png')");
+			  }
+			  else if (which == "bgc" || which == "bgclb") {
+				  console.info("Custom Background");
 				  $('body').css('background-image', "url("+bg_custom+")");
 			  }
-			  else if (which =="bg9") {
+			  else if (which == "bg9" || which == "bg9lb") {
 				  $('body').css('background-image', "url('assets/green.png')");
+			  }
+			  else {
+				  console.error("Background is undefined or the logic fell through");
 			  }
 		  }
 		  
@@ -1770,12 +1808,11 @@
 			if (artistname.length == 0) {artistname = "Various Artists";}	
 				filename = songname+" - "+artistname+" - Bifrost.png";
 			//document.documentElement.requestFullscreen();
-			html2canvas(document.body, { allowTaint: true, useCORS: true, width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080 }).then((canvas) => { 
+			html2canvas(document.body, { allowTaint: true, useCORS: true, width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080 }).then((canvas) => {
+				canvas.crossOrigin = 'Anonymous'; // Potential fix for CORS check failure, might not be needed
 				img = canvas.toDataURL("image/png"); 
 				downloadURI(img, filename);
 			})
-			// Get out of fullscreen mode if we're in it
-			//document.exitFullscreen();
 			// Now re-enable the menu bar
 			menubar.removeClass("toggle-off-alt");
 			$('.toggle-off-alt').addClass('toggle-off-alt-1').removeClass('toggle-off-alt');
