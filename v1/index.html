@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Primary Meta Tags -->
+	<title>BIFROST - Blackbeard</title>
+	<meta name="title" content="BIFROST - Blackbeard">
+	<meta name="description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://unforeseenocean.github.io/Bifrost/">
+	<meta property="og:title" content="BIFROST - Blackbeard">
+	<meta property="og:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+	<meta property="og:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://unforeseenocean.github.io/Bifrost/">
+	<meta property="twitter:title" content="BIFROST - Blackbeard">
+	<meta property="twitter:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+	<meta property="twitter:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
+	  
+	<style>
+		@font-face {
+			font-family: "Carter One";
+			src: url("assets/font/CarterOne-Regular.ttf");
+			font-display: block;
+		}
+		html, body {
+    		height: 100%;
+		}
+		body {
+			margin: 0;
+		}
+		.ord-1 {
+			z-index: 9999;
+		}
+		.ord-2 {
+			z-index: 2;
+		}
+		.ord-3 {
+			z-index: 3;
+		}
+		.ord-4 {
+			z-index: -9999;
+		}
+		
+		.ord-col {
+			flex-direction: column;
+		}
+		.abs {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		.flex-container {
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.hack-center-all {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.plank-menu-backup {
+			display: flex;
+			background-color: brown;
+			background-image: none;
+			min-width: 1050px;
+			max-height: 572px;
+			flex-direction: column;
+			z-index: 2;
+		}
+		.plank-menu {
+			display: flex;
+			background: url("assets/plank_menu.png") no-repeat;
+			background-position: center;
+			min-width: 1050px;
+			max-height: 619px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+		}
+		.plank-menu.stats {
+			display: flex;
+			background: url("assets/plank_menu.png") no-repeat;
+			background-position: center;
+			background-size: contain;
+			min-width: 1400px;
+			max-height: 800px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+		}
+		/*
+		* Straight from the official site
+		* Base color: 
+		* Bronze: #6D1805;
+		* Silver: #606060;
+		* Gold:   #AA7D05;
+		*/
+		.level1{color:#3FD7C8;}
+		.level2{color:#18abf0;}
+		.level3{color:#124AFF;}
+		.level4{color:#8914FF;}
+		.level5{color:#BD2CF3;}
+		.level6{color:#ED22A2;}
+		.level7{color:#D0082D;}
+		.level8{color:#F03023;}
+		.level9{color:#E9711a;}
+		.level10{color:#FBB227;}
+		.custom-checkbox{
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			top: 0px;
+			background: url("assets/checkbox_unchecked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox:hover{
+			background: url("assets/checkbox_unchecked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox.selected{
+			background: url("assets/checkbox_checked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox input[type="checkbox"]{
+			margin: 0;
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			z-index: 2;            
+			cursor: pointer;
+			outline: none;
+			opacity: 0;
+		}
+		.custom-radio{
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			top: 3px;
+			background: url("assets/radio_button_unchecked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-radio:hover{            
+			background: url("assets/radio_button_unchecked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-radio.selected{
+			background: url("assets/radio_button_checked.svg") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-radio input[type="radio"]{
+			margin: 1px;
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			z-index: 2;            
+			cursor: pointer;
+			outline: none;
+			opacity: 0;
+		}
+		.buttons-32px {
+			width: 32px;
+			height: 32px;
+			transition: all 0.25s;
+			cursor: pointer;
+		}
+		.buttons-48px {
+			width: 48px;
+			height: 48px;
+			transition: all 0.25s;
+			cursor: pointer;
+		}
+		.buttons-64px {
+			width: 64px;
+			height: 64px;
+			transition: all 0.25s;
+			cursor: pointer;
+		}
+		.cursor-pointer {
+			cursor: pointer;
+		}
+		.cursor-help {
+			cursor: help;
+		}
+		.cursor-no {
+			cursor: not-allowed;
+		}
+		
+		.buttons-32px:hover {
+			transform: scale(1.2);
+		}
+		.buttons-48px:hover {
+			transform: scale(1.2);
+		}
+		.buttons-64px:hover {
+			transform: scale(1.2);
+		}
+		.bronze, .silver, .gold { min-width: 100px; min-height: 100px; }
+		
+		.error-screen {
+			background-color: black;
+			color: white;
+			display: none;
+		}
+		.error-icon {
+			width: 128px;
+			height: 128px;
+		}
+		
+		@media only screen and (max-width: 1279px){
+			.body-container {
+				display: none;
+			}
+			.preloader-container {
+				display: none;
+			}
+			.error-screen {
+				display: flex;
+			}
+		}
+		
+		@media only screen and (max-height: 719px){
+			.body-container {
+				display: none;
+			}
+			.preloader-container {
+				display: none;
+			}
+			.error-screen {
+				display: flex;
+			}
+		}
+		
+		.menu-bar-bottom {
+			bottom: 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			gap: 10px;
+			align-items: flex-start;
+			position: absolute;
+			background-color: rgba(0,0,0,0.50);
+			padding: 8px;
+			width: 100%;
+			z-index: 15;
+		}
+		
+		.song-info {
+			font-family: "Carter One", "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+			position: relative;
+			left: -61px;
+			top: 121px;
+		}
+		.song-info-text {
+			display: flex;
+			flex-direction: column;
+			font-size: 2em;
+			color: white;
+			position: relative;
+			left: 259px;
+			bottom: 100px;
+			width: 500px;
+			z-index: 1;
+		}
+		.song-name{
+			text-transform: uppercase;
+			display: inline-block;
+			font-size: 1.17em;
+			line-height: 0.95em;
+			height: 35px;
+			z-index: 1;
+			width: max-content;
+		}
+		.artist-name{
+			display: inline-block;
+			width: max-content;
+			height: 48px;
+			z-index: 1;
+		}
+		.icon {
+			width: 30px;
+			height: 30px;
+		}
+		.song-time {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			gap: 6px;
+			font-size: 1.8em;
+			background-color: black;
+			padding: 10px;
+			border: hidden;
+			max-width: 130px;
+			max-height: 40px;
+			border-radius: 10px;
+			z-index: 999999;
+			position: relative;
+			left: 93px;
+			top: 33px;
+		} 
+		.nomargin{
+			margin: 0;
+		}
+		.img-frame{
+			position: relative;
+			width: 180px;
+			height: 180px;
+			left: 68px;
+			top: 73px;
+			z-index: 1;
+			
+		}
+		.album-image{
+			position: relative;
+			left: -100px;
+			top: 71px;
+			width: 150px;
+			height: 150px;
+			z-index: 1;
+		}
+		.img-small {
+			width: 150px;
+			height: 150px;
+		}
+		
+		.medals {
+			height: 180px;
+			display: flex;
+			flex-direction: row;
+			gap: 102px;
+		}
+		.medal-container{
+			height: 280px;
+			width: 180px;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			left: -46px;
+			bottom: 240px;
+		}
+		.bronze, .silver, .gold {
+			min-width: 150px;
+			min-height: 150px;
+			position: relative;
+			z-index: 4;
+			top: 0;
+			left: 274px;
+		}
+		.u1, .u2, .u3 {
+			z-index: 3;
+			height: 100px;
+			width: 100px;
+			position: relative;
+			top: 0;
+			left: 150px;
+		}
+		.medal-bg {
+			z-index: 2;
+			height: 200px;
+			width: 200px;
+		}
+		.song-difficulty-container-backup {
+			display: flex;
+			flex-direction: row;
+			position: relative;
+			left: 787px;
+			bottom: 260px;
+			z-index: 1;
+		}
+		.song-difficulty-container{
+			display: flex;
+			flex-direction: row;
+			position: relative;
+			left: 810px;
+			bottom: 265px;
+			z-index: 1;
+			width: 120px;
+		}
+		.difficulty-bg {
+			width: 110px;
+			height: 110px;
+			z-index: 1;
+			position: relative;
+		}
+		.difficulty-fg {
+			width: 100px;
+			height: 100px;
+			position: relative;
+			bottom: -3px;
+			right: 102px;
+			z-index: 1;
+		}
+		.diff-cntr {
+			color: white;
+			font-size: 3em;
+			position: relative;
+			display: flex;
+			min-width: 100px;
+			min-height: 100px;
+			justify-content: center;
+			align-items: center;
+			bottom: -5px;
+			left: -204px;
+		}
+		.songinfo-plank-bg-backup {
+			background-color: #643A10;
+			position: relative;
+			display: block;
+			z-index: 0;
+			width: 855px;
+			height: 132px;
+			bottom: 384px;
+			left: 90px;
+		}
+		.songinfo-plank-bg {
+			background: url("assets/plank_songinfo-m.png") no-repeat;
+			position: relative;
+			display: block;
+			z-index: 0;
+			width: 900px;
+			height: 141px;
+			bottom: 388px;
+			left: 70px;
+		}
+		.plank-menu-top{
+			flex-direction: row;
+		}
+		body {
+			background-image: url("assets/debug_bglq.png");
+			overflow: hidden;
+			background-repeat: no-repeat; 
+   			background-color: #222842;
+   			background-position: center;
+			background-size: cover;
+		}
+		label {
+			font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+			font-size: 1.6em;
+			color: white;
+		}
+		@keyframes spinner {
+			0% {
+				transform: rotate(0deg);
+				transform-origin: center center;
+			}
+			100% {
+				transform: rotate(359deg);
+				transform-origin: center center;
+			}
+		}
+		.menu-overlay{
+			position: fixed;
+			z-index: 9999;
+			background-color: rgba(0,0,0,0.75);
+			display: flex;
+			flex-direction: row;
+		}
+		.about-overlay{
+			position: fixed;
+			z-index: 9999;
+			background-color: rgba(0,0,0,0.75);
+			display: flex;
+			flex-direction: row;
+		}
+		.about-div {
+			display: flex;
+			flex-direction: column;
+			padding: 20px;
+			gap: 5px;
+			justify-content: center;
+			align-items: center;
+		}
+		.menu {
+			display: flex;
+			flex-direction: row;
+			padding: 20px;
+			gap: 40px;
+		}
+		.logo-small{
+			height: 120px;
+			width: auto;
+		}
+		.logo-xs {
+			height: 64px;
+			width: auto;
+		}
+		.icon-mid {
+			height: 64px;
+			width: auto;
+			transition: all 0.25s;
+		}
+		.wrapper-about{
+			display: flex;
+			flex-direction: column;
+			padding: 5px;
+			gap: 5px;
+			justify-content: center;
+			align-items: center;
+		}
+		.wrapper-icons {
+			display: flex;
+			flex-direction: row;
+			padding: 5px;
+			gap: 15px;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.menu-col1, .menu-col2, .menu-col3 {
+			display: flex;
+			flex-direction: column;
+		}
+		.white-text {
+			font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+			font-size: 1.6em;
+			color: white;
+		}
+		
+		.icon-mid:hover {
+			transform: scale(1.2);
+		}
+		
+		.toggle-off {
+			display: none;
+		}
+		.toggle-off-alt {
+			opacity: 0;
+		}
+		.toggle-off-alt-1 {
+			opacity: 0.25;
+		}
+		.explicit-indicator-backup {
+			position: relative;
+			left: 700px;
+			bottom: 175px;
+			z-index: 2;
+			width: 64px;
+		}
+		.explicit-indicator {
+			position: relative;
+			left: 744px;
+			bottom: 180px;
+			z-index: 2;
+			width: 64px;
+		}
+		.explicit-icon {
+			height: 64px;
+			width: auto;
+		}
+		.icon-rune {
+			height: 38px;
+			width: auto;
+		}
+		.custom-name {
+			font-size: 0.8em;
+		}
+		.custom-author-container {
+			display: inline-flex;
+			flex-direction: row;
+			line-height: 36px;
+			position: relative;
+			left: -40px;
+			bottom: 155px;
+		}
+		
+		.preloader-container {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  height: 100%;
+			  padding: 0;
+			  margin: 0;
+			background-color: rgb(58,58,58);
+		  }
+		  .ord-first {
+			  z-index: 999999999;
+		  }
+		  .ord-second {
+			  z-index: 999999998;
+		  }
+		  .ord-third {
+			  z-index: 999999997;
+		  }
+		  .ord-fourth {
+			  z-index: 999999996;
+		  }
+		  .ship-wharf {
+			  display: flex;
+			  flex-direction: column;
+			  min-width: 300px;
+			  min-height: 300px;
+			  max-width: 300px;
+			  max-height: 300px;
+			  clip-path: circle(42.5%);
+			  position: relative;
+		  }
+		  .drakkar {
+			  width: 128px;
+			  animation: wave 3s linear infinite;
+			  transform-origin: center center;
+		  }
+		  .wavefront {
+			  animation: wave 3s linear infinite reverse;
+			  transform-origin: center center;
+		  }
+		  .waveback {
+			  animation: wave 3s linear infinite reverse;
+			  animation-delay: 0.25s;
+			  transform-origin: center center;
+		  }
+		  .sail {
+			  position: absolute;
+			  width: 150px;
+			  animation: wave 3s linear infinite reverse;
+			  transform-origin: center center;
+			  left: 76px;
+			  top: 110px;
+		  }
+		  .wave-one {
+			  position: absolute;
+			  animation: wave 3s linear infinite;
+			  transform-origin: 45% center;
+			  min-width: 300px;
+			  min-height: 150px;
+			  left: 20px;
+			  top: 179px;
+		  }
+		  .wave-two {
+			  position: absolute;
+			  animation: wave 3s linear infinite;
+			  animation-delay: 0.25s;
+			  transform-origin: 45% center;
+			  min-width: 300px;
+			  min-height: 150px;
+			  left: 20px;
+			  top: 170px;
+		  }
+		  .dockhand {
+			  font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+			  color: white;
+			  font-size: 2em;
+			  line-height: 0.125em;
+		  }
+		
+		.low-drag {
+			margin-bottom: 0;
+		}
+		.fix-checkbox {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		
+		input.numberinput {
+			font-weight: bold;
+			font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+			font-size: 1.1em;
+		}
+		.padding-left-fix {
+			margin: 0;
+			padding-left: 3px;
+		}
+		.margin-top-fix {
+			padding: 9px 0px 0px 0px;
+		}
+		.tippy-box {
+			z-index: 9999999999;
+		}
+		.swal2-container {
+  			z-index: 999999999999 !important;
+		}
+		.chonky {
+			font-size: 3em;
+		}
+		.stats-container {
+			font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+		}
+		.stats-text {
+			z-index: 46;
+			color: white;
+		}
+		.stats-text.large-caps {
+			font-size: 1.80em;
+			text-transform: uppercase;
+		}
+		.stats-text.numbers {
+			font-size: 1.8em;
+			width: 114px;
+			height: 36px;
+			display: inline-block;
+			width: min-content;
+		}
+		.numbers-disp {
+			display: inline-block;
+			width: min-content;
+		}
+		.stats-text.numbers.small {
+			font-size: 1.3em;
+		}
+		.stats-binder {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.stats-graphic {
+			width: 150px;
+			height: auto;
+		}
+		.binder-sub {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			  justify-content: center;
+		}
+		
+		.adj1 {
+			position: relative;
+			bottom: 84px;
+			right: 2px;
+		}
+		.adj2 {
+			position: relative;
+			bottom: 90px;
+			right: 2px;
+		}
+		.adj3 {
+			position: relative;
+			bottom: 84px;
+			right: 2px;
+			font-size: 1.50em;
+		}
+		.stats-text.numbers.adj3 {
+			font-size: 1.5em;
+		}
+		.stats-top {
+			display: flex;
+			flex-direction: row;
+			max-height: 350px;
+			position: relative;
+			min-width: 1200px;
+			justify-content: center;
+			column-gap: 120px;
+			top: 80px;
+		}
+		.stats-bottom {
+			display: flex;
+			flex-direction: row;
+			position: relative;
+			min-width: 1200px;
+			justify-content: center;
+			column-gap: 120px;
+			top: 20px;
+		}
+		.blue {
+			color: #00FFFA;
+		}
+		.yellow {
+			color: #FFEB00;
+		}
+		
+		.turn-inline {
+			display: inline;
+		}
+		.fit {
+			display: inline-block;
+			white-space: nowrap;
+			
+		}
+		textarea {
+			color: white;
+		}
+		  @keyframes wave {
+			  0% {
+				  transform: rotate(0deg);
+			  }
+			  100% {
+				  transform: rotate(359deg);
+			  }
+		  }
+	  </style>
+	  <script src="js/jquery-3.6.3.min.js"></script>
+	  <script src="js/imagesloaded.pkgd.min.js"></script>
+  </head>
+  <body id="body">
+	  <div class="preloader-container" id="preloader" data-html2canvas-ignore>
+		<div class="ship-wharf">
+			<div class="sail ord-second">
+				<img class="drakkar" src="assets/waverider_drakkar.svg" alt="How come did the preloader break?!">
+			</div>
+			<div class="wave-one ord-first">
+				<img class="wavefront" src="assets/waverider_wave1.svg" alt="Noooooooooo!">
+			</div>
+			<div class="wave-two ord-third">
+					<img class="waveback" src="assets/waverider_wave2.svg" alt="How come?!">
+			</div>
+		</div> 
+		<div class="dockhand">
+			<p>Loading, please wait!</p>
+		</div>
+	</div>
+	  <div class="flex-container ord-col ord-first abs error-screen" id="error" data-html2canvas-ignore>
+			<img src="assets/Redistributable/ui/error.svg" class="error-icon" alt="error"> 
+	  	<h1>The screen is too small to utilize the application.</h1>
+		  <p>Please change screen resolution.</p>
+		  <p>The minimum supported screen size is <b>1024x768.</b></p>
+	  </div>
+	  <div class="flex-container ord-col body-container" id="main">
+			<div class="plank-menu" id="plankton">
+				<div class="stats-container toggle-off" id="stats-disp">
+					<div class="stats-top">
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/vitesse-01.png" alt="distance traveled">
+						<div class="stats-text large-caps">Distance</div>
+							<div class="binder-sub">
+								<img class="stats-frame" src="assets/bg_compteur_stats.png" alt="stats frame">
+								<div class="stats-text numbers adj3 fit"><span id="dist-text" class="numbers-disp">1,000.00</span></div>
+								<!-- Ugly hack! -->
+								<div class="stats-text numbers small adj2">meters</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/icones-note-hit.png" alt="notes hit">
+						<div class="stats-text large-caps">Notes hit</div>
+							<div class="binder-sub">
+								<img class="stats-frame" src="assets/bg_compteur_stats.png" alt="stats frame">
+								<div class="stats-text numbers adj1 fit"><span id="notes-hit" class="numbers-disp">999,999</span></div>
+								<div class="stats-text numbers small adj2" id="notes-hit-percent">(100%)</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/icones-note-missed.png" alt="notes missed">
+						<div class="stats-text large-caps">Notes missed</div>
+							<div class="binder-sub">
+								<img class="stats-frame" src="assets/bg_compteur_stats.png" alt="stats frame">
+								<div class="stats-text numbers adj1 fit" ><span id="notes-missed" class="numbers-disp">999,999</span></div>
+								<div class="stats-text numbers small adj2" id="notes-missed-percent">(100%)</div>
+							</div>
+						</div>
+					</div>
+					<div class="stats-bottom">
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/icones-note-perfect.png" alt="perfect hits">
+						<div class="stats-text large-caps">Perfects</div>
+							<div class="binder-sub">
+								<img class="stats-frame" src="assets/bg_compteur_stats.png" alt="stats frame">
+								<div class="stats-text numbers adj1 fit" ><span id="perfects" class="numbers-disp">100</span>%</div>
+								<div class="stats-text numbers small adj2" id="perfects-latency">-999ms</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/icones-combo-triggered.png" alt="combos">
+						<div class="stats-text large-caps">Combos</div>
+							<div class="binder-sub">
+								<img class="stats-frame" src="assets/bg_compteur_stats.png" alt="stats frame">
+								<div class="stats-text numbers adj1" id="combo-total">256</div>
+								<div class="stats-text numbers small adj2"><span class="turn-inline">(</span><span class="blue turn-inline" id="partial-boost">64</span><span class="turn-inline">&nbsp;+&nbsp;</span><span class="yellow turn-inline" id="full-boost">64</span>)</div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div class="main-container" id="mainmenu">
+				<div class="plank-menu-top" id="pl-main-top">
+				<div class="song-info">
+				<div class="album-image-container">
+					<div class="album-image-frame" id="albumbtn">
+						<img src="assets/album_art_frame.png" class="img-frame" alt="album frame">
+						<img src="assets/default.png" class="album-image cursor-pointer" alt="album art" id="albumimg">
+						<input type="file" class="toggle-off" accept=".jpg, .jpeg, .png" id="albumart-uploader" onChange="handleFileSelect2()" hidden>
+					</div>
+						<div class="song-time" id="clock">
+								<img src="assets/icon_songlength.png" class="clock icon" alt="time">
+								<p id="song-time" class="nomargin">3:30</p>
+						</div>
+					</div>
+					<div class="song-info-text">
+						<div class="song-name fit" id="songname">Welcome to Asgard</div>
+						<div class="artist-name fit" id="artist">Manaberry</div>
+					</div>
+					<div class="explicit-indicator toggle-off-alt-1" id="explicit">
+						<img class="explicit-icon" src="assets/explicit_song.png" alt="E">
+					</div>
+					<div class="song-difficulty-container" id="diffcontainer">
+						<img class="difficulty-bg" src="assets/bg_level.png" alt="difficulty background">
+						<img class="difficulty-fg" id="difficulty" src="assets/difficulty_3.png" alt="difficulty">
+						<div class="difficulty-fg diff-cntr toggle-off" id="difficulty-ol">999</div>
+					</div>
+					<div class="songinfo-plank-bg"></div>
+					</div>
+				</div>
+				<div class="plank-menu-bottom" id="pl-main-bot">
+					<div class="medals" id="medals-container">
+						<div class="medal-container">
+							<img class="medal bronze" id="bronze-medal" src="assets/medals/bronze_medal_c.png" alt="medal bronze">
+							<img class="medal unachieved u1" src="assets/unreached_goal.png" alt="medal behind">
+							<img class="medal-bg" src="assets/medal_backplate.png" alt="medal background">
+						</div>
+						<div class="medal-container">
+							<img class="medal silver" id="silver-medal" src="assets/medals/silver_medal_c.png" alt="medal silver">
+							<img class="medal unachieved u2" src="assets/unreached_goal.png" alt="medal behind">
+							<img class="medal-bg" src="assets/medal_backplate.png" alt="medal background">
+						</div>
+						<div class="medal-container">
+							<img class="medal gold" id="gold-medal" src="assets/medals/gold_medal_c.png" alt="medal gold">
+							<img class="medal unachieved u3" src="assets/unreached_goal.png" alt="medal behind">
+							<img class="medal-bg" src="assets/medal_backplate.png" alt="medal background">
+						</div>
+					</div>
+					<div class="binder custom-author-container white-text toggle-off-alt-1" id="custom-author-div">
+							<img class="icon-rune" id="rune" src="assets/icon_custom_author.png" alt="rune">
+							<div class="custom-name" id="custom-author">Blackbeard</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		  <div class="about-overlay toggle-off" id="help-overlay" data-html2canvas-ignore>
+		  	<div class="about-div">
+			  <div class="white-text chonky">How to use Bifrost</div>
+			  <div class="white-text">1. Press the album art to upload a new album art.</div>
+			  <div class="white-text">2. Press <img class="buttons-48px" src="assets/button_settings.svg" alt="settings"> to open the settings menu.</div>
+			  <div class="white-text">3. Set the parameters to how you want it.</div>
+				<div class="white-text">Note: To apply custom background, you must press Apply Background.</div>
+				<div class="white-text">4. Press <img class="buttons-48px" src="assets/button_settings.svg" alt="settings"> to close the menu.</div>
+				<div class="white-text">5. Press <img class="buttons-48px" src="assets/Redistributable/ui/download.svg" alt="about"> to download the image.</div>
+				<div class="white-text">Downloaded image will always be 1920x1080 regardless of your monitor's resolution.</div>
+				<div class="white-text">To access the Stats page, press <img class="buttons-48px" src="assets/ic_back_arrow_r.png" alt="to main">.</div>
+				<div class="white-text">To return to the main page from Stats page, press <img class="buttons-48px" src="assets/ic_back_arrow_l.png" alt="to main">.</div>
+			  </div>
+		  </div>
+		  <div class="about-overlay toggle-off" id="about-overlay" data-html2canvas-ignore>
+		  	<div class="about-div">
+				<img class="logo-small" src="assets/bifrost_logo_blk.svg" alt="bifrost logo">
+			  <div class="white-text">Bifrost - Video Thumbnail Generator for Ragnarock</div>
+			  <div class="white-text">Created by Blackbeard (while on ADHD pills, no less!)</div>
+			  <div class="white-text">Most of art assets created by Wanadev Studio.</div>
+			  <div class="white-text">&copy; 2022 Wanadev Studio. All rights reserved.</div>
+				<div class="wrapper-about">
+					<div class="wrapper-icons">
+				<img class="logo-xs" src="assets/wanadev_logo_blk.svg" alt="wanadev logo">
+					<img class="logo-xs" src="assets/blackbeard_logo_blk.svg" alt="blackbeard logo"></div>
+					<div class="white-text">Learn More about Ragnarock!</div>
+					<div class="wrapper-icons">
+					<a href="https://www.ragnarock-vr.com/home" id="ragnarock-link-hp">
+						<img class="icon-mid" src="assets/Redistributable/ui/globe.svg" alt="globe"></a>
+					<a href="https://www.oculus.com/experiences/quest/3749621795127676/" id="ragnarock-link-meta">
+						<img class="icon-mid" src="assets/Redistributable/game/meta.svg" alt="meta logo"></a>
+					<a href="https://store.steampowered.com/app/1345820/Ragnarock/" id="ragnarock-link-steam">
+						<img class="icon-mid" src="assets/Redistributable/game/steam.svg" alt="steam logo"></a>
+					</div>
+					<div class="white-text">Special thanks to RagnaCustoms, Ragnarock Community, my friends and BloculusMonster!</div>
+					<div class="white-text">Also thank you Nicolas for being extra helpful!</div>
+				</div>
+			  </div>
+		  </div>
+		  <div class="menu-overlay toggle-off" id="menu" data-html2canvas-ignore>
+		  	<div class="menu" id="menu-main">
+			  <div class="menu-col1">
+				  <div class="binder">
+				  <p class="white-text low-drag">Song Info</p>
+				  </div>
+				  <!--<div class="binder">
+				  <input type="text" class="numberinput" name="songnametext" id="songnametext" value="Untitled Song" maxlength="32" onChange="updateSongInfo()">
+				  <label for="songnametext" class="padding-left-fix" >Song Name</label>
+				  </div>
+				  <div class="binder">
+				  <input type="text" class="numberinput" name="artisttext" id="artistinput" value="Various Artists" maxlength="32" onChange="updateSongInfo()">
+				  <label for="artisttext" class="padding-left-fix" >Artist</label>
+				  </div>-->
+				  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="togglemedal" id="showmedals" onChange="toggleMedals()" checked>
+				  <label for="showmedals" class="padding-left-fix">Show Medals</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="checkbox_custom medal-selector" name="newradio" id="bronzemedal" onChange="updateMedals()">
+				  <label for="bronzemedal" class="padding-left-fix">Ranked</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="checkbox_custom medal-selector" name="newradio" id="silvermedal" onChange="updateMedals('none')">
+				  <label for="silvermedal" class="padding-left-fix">Unranked</label>
+				  </div>
+				  <div class="binder">
+				  <p class="white-text low-drag">Song Length</p>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="minutes" id="minutes" min="0" max="99" value="0" onChange="updateTime()">
+				  <label for="minutes" class="padding-left-fix">Minutes</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="seconds" id="seconds" min="0" max="59" value="0" onChange="updateTime()">
+				  <label for="seconds" class="padding-left-fix">Seconds</label>
+				  </div>
+				  <div class="binder">
+				  <p class="white-text low-drag">Difficulty</p>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="diffinput" id="difficultysel" min="1" max="64" value="1" onChange="updateDiff()">
+				  <label for="difficultysel" class="padding-left-fix">Difficulty</label>
+				  </div>
+				  <!--<div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="togglecustom" id="customsong" onChange="toggleCSName()">
+				  <label for="customsong" class="padding-left-fix">Is A Custom Song</label>
+				  </div>-->
+				  <div class="binder">
+				  <input type="text" class="numberinput" name="authorinput" id="customauthor" value="Blackbeard" onChange="updateAuthor()">
+				  <label for="customauthor" class="padding-left-fix" maxlength="32">Author</label>
+				  </div>
+				  
+				  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleLQ" id="lq" onChange="toggleLQ()" checked>
+				  <label for="toggleLQ" class="padding-left-fix">Low Bandwidth BG</label>
+				  </div>
+				  
+				  <!--<div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleexplicit" id="explicit-yn" onChange="toggleExplicit()">
+				  <label for="explicit-yn" class="padding-left-fix">Is Explicit</label>
+				  </div>-->
+				</div>
+			  <div class="menu-col2">
+				  <div class="binder">
+				  <p class="white-text">Background</p>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg0" onChange="updateBG()">
+				  <label for="bg0" class="padding-left-fix">Alfheim</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg1" onChange="updateBG()">
+				  <label for="bg1" class="padding-left-fix">Asgard</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg2" onChange="updateBG()">
+				  <label for="bg2" class="padding-left-fix">Muspelheim</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg3" onChange="updateBG()">
+				  <label for="bg3" class="padding-left-fix">Midgard</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg4" onChange="updateBG()">
+				  <label for="bg4" class="padding-left-fix">Nidavellir</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg5" onChange="updateBG()">
+				  <label for="bg5" class="padding-left-fix">Helheim</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg6" onChange="updateBG()">
+				  <label for="bg6" class="padding-left-fix">Hellfest</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg7" onChange="updateBG()">
+				  <label for="bg7" class="padding-left-fix">Empty</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg8" onChange="updateBG()">
+				  <label for="bg8" class="padding-left-fix">Dark Empty</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg9" onChange="updateBG()">
+				  <label for="bg9" class="padding-left-fix">Chroma-Key</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bgc" onChange="updateBG()">
+				  <label for="bg8" class="padding-left-fix">Custom Image</label>
+					  </div>
+				  <div class="binder margin-top-fix">
+				  <input type="file" class="bguploader" name="bguploader" id="bgcustom" accept=".jpg, .jpeg, .png">
+					  </div>
+				  <div class="binder margin-top-fix">
+				  <input type="button" class="bguploader-sel" id="bgcustomapply" onClick="handleFileSelect()" value="Apply Background">
+					  </div>
+				</div>
+			  </div>
+			  <div class="menu toggle-off" id="menu-stat">
+			  <div class="menu-col1">
+				  <div class="binder">
+				  <p class="white-text low-drag">Stat Settings</p>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="distance" id="distance-input" step="0.01" value="0.00" min="0.00" max="4294967295.0" onChange="updateStats()">
+				  <label for="distance" class="padding-left-fix">Distance</label>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="hits" id="hits-input" value="0" min="0" max="4294967295" onChange="updateStats()">
+				  <label for="hits" class="padding-left-fix">Notes Hit</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="hitpercent" id="hitpercent-input" value="0" min="0" max="100" onChange="updateStats()">
+				  <label for="hitpercent" class="padding-left-fix">Hit Percentage</label>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="misses" id="misses-input" value="0" min="0" max="4294967295" onChange="updateStats()">
+				  <label for="misses" class="padding-left-fix">Notes Missed</label>
+					  <div class="binder">
+				  <input type="number" class="numberinput" name="misspercent" id="misspercent-input" value="0" min="0" max="100" onChange="updateStats()">
+				  <label for="misspercent" class="padding-left-fix">Miss Percentage</label>
+				  </div>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="perfects" id="perfects-input" min="0" value="0" max="100" onChange="updateStats()">
+				  <label for="perfects" class="padding-left-fix">Perfects</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="perfectpercent" id="perfectpercent-input" min="-999" value="0" max="999" onChange="updateStats()">
+				  <label for="perfectpercent" class="padding-left-fix">Perfects Latency</label>
+				  </div>
+				  <!-- The total number of combos should update according to those two values -->
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="lowcombo" id="lc-input" value="0" min="0" max="256" onChange="updateStats()">
+				  <label for="lowcombo" class="padding-left-fix">Combos (Partial)</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="maxcombo" id="mc-input" value="0" min="0" max="256" onChange="updateStats()">
+				  <label for="maxcombo" class="padding-left-fix">Combos (Full)</label>
+					  
+				  </div>
+				</div>
+			  </div>
+		  </div>
+    </div>
+	  
+	  <div class="this-div-should-not-be-shown" hidden data-html2canvas-ignore>
+		  作成日少量情保通信網複雜文謂情保處理運營體第作成自黑鬚侏
+		  湊擬力決乏障曖醫藥醉低級文作成
+	  </div>
+	  <div class="menu-bar-bottom toggle-off" id="bottombeard" data-html2canvas-ignore>
+		  <div class="buttons-48px" id="menubtn" onclick="showMenu(0)"><img src="assets/button_settings.svg" alt="settings"></div>
+		  <div class="buttons-48px" id="aboutbtn" onclick="showMenu(1)"><img src="assets/Redistributable/ui/icon_info.svg" alt="about"></div>
+		  <div class="buttons-48px" id="helpbtn" onclick="showMenu(2)"><img src="assets/icon_about.svg" alt="help"></div>
+		  <div class="buttons-48px" id="download" onclick="downloadImg()"><img src="assets/Redistributable/ui/download.svg" alt="about"></div>
+		  <div class="buttons-48px" id="gotostats" onclick="goto(1)"><img src="assets/ic_back_arrow_r.png" alt="to stats"></div>
+		  <div class="buttons-48px toggle-off" id="gotomain" onclick="goto(0)"><img src="assets/ic_back_arrow_l.png" alt="to main"></div>
+		  </div>
+	<script>
+		//This spaghetti web app developed in few days by Blackbeard
+	function customCheckbox(checkboxName){
+		var checkBox = $('input[name="'+ checkboxName +'"]');
+		$(checkBox).each(function(){
+			$(this).wrap( "<span class='custom-checkbox'></span>" );
+			if($(this).is(':checked')){
+				$(this).parent().addClass("selected");
+			}
+		});
+		$(checkBox).click(function(){
+			$(this).parent().toggleClass("selected");
+		});
+	}
+	
+		function customRadio(radioName){
+			var radioButton = $('input[name="'+ radioName +'"]');
+			$(radioButton).each(function(){
+				$(this).wrap( "<span class='custom-radio'></span>" );
+				if($(this).is(':checked')){
+					$(this).parent().addClass("selected");
+				}
+			});
+			$(radioButton).click(function(){
+				if($(this).is(':checked')){
+					$(this).parent().addClass("selected");
+				}
+				$(radioButton).not(this).each(function(){
+					$(this).parent().removeClass("selected");
+				});
+			});
+		}
+		// Calling customRadio function
+		$(document).ready(function (){
+			customRadio("newradio");
+			customRadio("newradio1");
+			customCheckbox("togglemedal");
+			customCheckbox("toggletime");
+			customCheckbox("togglediff");
+			customCheckbox("togglecustom");
+			customCheckbox("toggleexplicit");
+			customCheckbox("toggleLQ");
+			console.log(version);
+		});
+	</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="js/popper2.min.js"></script>
+    <!--<script src="js/bootstrap-4.4.1.js"></script>-->
+	  <script src="js/jquery.editable.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/html2canvas.js"></script>
+	<script src="js/tippy-bundle.umd.min.js"></script>
+	  <script src="js/sweetalert2.js"></script>
+	  <script src="js/fitty.min.js"></script>
+	  
+	  <script>
+		  var bg_custom;
+		  var album_img;
+		  var version = "1.9.5 RC3";
+		  fitty("#songname", {minSize: 16, maxSize: 35});
+		  fitty("#artist", {minSize: 12, maxSize: 30});
+		  fitty("#dist-text", {minSize: 6, maxSize: 35});
+		  fitty("#notes-hit", {minSize: 6, maxSize: 35});
+		  fitty("#notes-missed", {minSize: 6, maxSize: 35});
+		  fitty("#perfects", {minSize: 6, maxSize: 35});
+		  
+		  // Actually this is unnecessary but I will leave this change alone for the future
+		  tippy("#albumimg", {content: "Click to change! Square image please.",});
+	  		const albumarttippy = tippy("#albumimg");
+		  tippy("#menubtn", {content: "Fallback Menu",});
+		  	const menubtntippy = tippy("#menubtn");
+		  tippy("#aboutbtn", {content: "About Bifrost",});
+		  	const aboutbtntippy = tippy("#aboutbtn"); 
+		  tippy("#helpbtn", {content: "Help!",});
+		  	const helpbtntippy = tippy("#helpbtn"); 
+		  tippy("#download", {content: "Download Image",});
+		  	const dlimgtippy = tippy("#download");
+		  tippy("#gotostats", {content: "Go to Stats page",});
+		  	const statstippy = tippy("#gotostats");
+		  tippy("#gotomain", {content: "Go to Song Info page",});
+		  	const maintippy = tippy("#gotomain");
+		  tippy("#ragnarock-link-hp", {content: "Official Site",});
+		  	const hplinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#ragnarock-link-meta", {content: "Meta Store Page",});
+		  	const metalinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#ragnarock-link-steam", {content: "Steam Store Page",});
+		  	const steamlinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#songname", {content: "Double-click to edit!",});
+		  	const songnametippy = tippy("#songname");
+		  tippy("#artist", {content: "Double-click to edit!",});
+		  	const artisttippy = tippy("#artist");
+		  tippy("#explicit", {content: "Click to toggle Explicit status!",});
+		  	const explicittippy = tippy("#explicit");
+		  tippy("#rune", {content: "Click to toggle Custom Map Author name!",});
+		  	const csntippy = tippy("#rune");
+		  
+		  tippy("#bronze-medal", {content: ["Click to set medal! To hide all medals, use Unranked option in menu."],});
+		  	const bronzetippy = tippy("#bronze-medal");
+		  tippy("#silver-medal", {content: ["Click to set medal! To hide all medals, use Unranked option in menu."],});
+		  	const silvertippy = tippy("#silver-medal");
+		  tippy("#gold-medal", {content: ["Click to set medal! To hide all medals, use Unranked option in menu."],});
+		  	const goldtippy = tippy("#gold-medal");
+		  tippy("#lq", {content: ["Enable/disable low bandwidth background for slower connections."],});
+		  	const lqtippy = tippy("#lq");
+		  
+		  //console.log(albumarttippy);
+		  
+		function updateDiff(){
+			var index = $("#difficultysel").val();
+			// Ensure the image index is kept at safe level, including when it's at NaN or null
+			if (index > 10) {
+				$("#difficulty").addClass("toggle-off-alt");
+				$("#difficulty-ol").removeClass("toggle-off");
+				$("#difficulty-ol").text(index);
+			}
+			else if (index < 1) {
+				index = 1;
+				$("#difficulty").removeClass("toggle-off-alt");
+				$("#difficulty-ol").addClass("toggle-off");
+				$("#difficulty").attr("src", "assets/difficulty_"+index+".png");
+			}
+			else if ((Number.isNaN(index)) || index === "") {
+				console.warn("A non-number value was entered into Difficulty!");
+				index = 1;
+				$("#difficulty").removeClass("toggle-off-alt");
+				$("#difficulty-ol").addClass("toggle-off");
+				$("#difficulty").attr("src", "assets/difficulty_"+index+".png");
+			}
+			else {
+				$("#difficulty").removeClass("toggle-off-alt");
+				$("#difficulty-ol").addClass("toggle-off");
+				$("#difficulty").attr("src", "assets/difficulty_"+index+".png");
+			}
+			
+		}  
+		
+		  // Section to invoke ClickToEdit
+		 $('#songname').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "-", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song name edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song name edited");
+						 if (data.content == "") {
+							 console.log("Song name set to nothing");
+							 $('#songname').text("Welcome to Asgard");
+						 }
+					 }
+				 }
+			 });
+		 $('#artist').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "-", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song name edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song name edited");
+						 if (data.content == "") {
+							 console.log("Song name set to nothing");
+							 $('#artist').text("Manaberry");
+						 }
+					 }
+				 }
+			 });
+		  $('#song-time').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "3:30", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song time edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song time edited");
+						 if (data.content == "") {
+							 console.log("Song time set to nothing");
+							 $('#song-time').text("3:30");
+						 }
+					 }
+				 }
+			 });
+		  $('#custom-author').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "Blackbeard", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("CSN edited");
+						 toggleCSName(true);
+					 }
+					 if (!data.content){ 
+						 console.log("CSN edited");
+						 if (data.content == "") {
+							 console.log("CSN set to nothing");
+							 $('#custom-author').text("Blackbeard");
+						 }
+					 }
+				 }
+			 });
+		function updateTime(){
+			var minutes = $("#minutes").val();
+			var seconds = $("#seconds").val();
+			// Ensure minutes value doesn't exceed 99 or enter NaN/null/inf
+			if (minutes > 99) {
+				minutes = 99;
+			}
+			else if (minutes < 0) {
+				minutes = 0;
+			}
+			else if ((Number.isNaN(minutes)) || minutes === "") {
+				console.warn("A non-number value was entered into Minutes!");
+				minutes = 0;
+			}
+			
+			// Ensure seconds value doesn't exceed 59 or enter NaN/null/inf
+			if (seconds > 59) {
+				seconds = 59;
+			}
+			else if (seconds < 0) {
+				seconds = 0;
+			}
+			else if ((Number.isNaN(seconds)) || seconds === "") {
+				console.warn("A non-number value was entered into Seconds!");
+				seconds = 0;
+			}
+			$("#song-time").text(minutes+":"+leftPad(seconds, 2));
+		}
+		  
+		function updateAuthor(){
+			var author = $("#customauthor").val();
+			// console.log(author.length)
+			if (author.length == 0) {
+				author = "TunakTunak"; // ;)
+			}
+			$("#custom-author").text(author);
+		}
+		  
+		  function updateSongInfo(){
+			  var songname = $("#songnametext").val();
+			  var artist = $("#artistinput").val();
+			  
+			  if (songname.length == 0){
+				  songname = "Extends Levant";
+			  }/*
+			  if (artist.length > 16) {
+				$("#songname").css("font-size", "");
+			  }*/
+			  if (artist.length == 0){
+				  artist = "HertzDevil";
+			  }/*
+			  if (artist.length > 16) {
+				$("#artist").css("font-size", "");
+			  }*/
+			  $("#songname").text(songname);
+			  $("#artist").text(artist);
+		  }
+		  
+		  $("#bronze-medal").click(function(event){
+			  updateMedals("bronzemedal");
+		  });
+		  $("#silver-medal").click(function(event){
+			  updateMedals("silvermedal");
+		  });
+		  $("#gold-medal").click(function(event){
+			  updateMedals("goldmedal");
+		  });
+		  
+		  
+		  function updateMedals(ext){
+			  // There is a way better way to do this but I can't make it work
+			  //var which = $(".medal-selector:checked").attr("id");
+			  var which = ext;
+			  var elemArray = [ $("#bronze-medal"), $("#silver-medal"), $("#gold-medal") ];
+			  // Ensure a known state
+			  	  elemArray[0].addClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+			  // Now just add and remove class to our liking
+			  // This IS inefficient but it is easy
+			  if (which == "bronzemedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+			  }
+			  else if (which == "silvermedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+			  }
+			  else if (which == "goldmedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].removeClass("toggle-off-alt-1");
+			  }
+			  else if (which == "none"){
+				  elemArray[0].addClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+			  }
+			  else {
+				  console.error("Fatal error on updateMedals() - Uncaught condition");
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].removeClass("toggle-off-alt-1");
+			  }
+		  }
+		  
+		  // Attach click handler for Explicit icon
+		  $("#explicit").click(function(event){
+			  toggleExplicit();
+		  });
+		  
+		  // Likewise, attach click handler for Custom Map Author name
+		  $("#rune").click(function(event){
+			  toggleCSName();
+		  });
+		  
+		  var expState = true;
+		  var csnState = true;
+		  var mdlState = false;
+		  var medalCount = 1;
+		  var lqmode = true;
+		  
+		  function toggleMedals(){
+			  // var state = $("#showmedals").is(":checked");
+			  if (mdlState == true){
+				  mdlState = false;
+				  $("#showmedals").prop("checked", false);
+				  $("#medals-container").removeClass("toggle-off-alt");
+			  }
+			  else if (mdlState == false){
+				  mdlState = true;
+				  $("#showmedals").prop("checked", true);
+				  $("#medals-container").addClass("toggle-off-alt");
+			  }
+		  }
+		  
+		  function toggleCSName(forceState){
+			  // var state = $("#customsong").is(":checked");
+			  if (forceState == true) {
+				  	if (csnState == false){
+					  csnState = true;
+					  $("#customsong").prop("checked", true);
+					  $("#custom-author-div").addClass("toggle-off-alt-1");
+			  } 
+			  }
+			  if (csnState == true){
+				  csnState = false;
+				  $("#customsong").prop("checked", false);
+				  $("#custom-author-div").removeClass("toggle-off-alt-1");
+			  }
+			  else if (csnState == false){
+				  csnState = true;
+				  $("#customsong").prop("checked", true);
+				  $("#custom-author-div").addClass("toggle-off-alt-1");
+			  }
+		  }
+		  
+		  function toggleLQ(){
+			  //var state = $("#lq").is(":checked");
+			  if (lqmode == true){
+				  $("#lq").prop("checked", false);
+				  lqmode = false;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+			  else if (lqmode == false){
+				  $("#lq").prop("checked", true);
+				  lqmode = true;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+		  }
+		  
+		  function toggleExplicit() {
+			  // var state = $("#explicit-yn").is(":checked");
+			  
+			  if (expState == true){
+				  expState = false;
+				  $("#explicit-yn").prop("checked",false);
+				  $("#explicit").removeClass("toggle-off-alt-1");
+			  }
+			  else if (expState == false){
+				  expState = true;
+				  $("#explicit-yn").prop("checked",true);
+				  $("#explicit").addClass("toggle-off-alt-1");
+			  }
+		  }
+		  
+		  function updateBG(){
+			  // There is a way better way to do this but I can't make it work
+			  var which = $(".bgselector:checked").attr("id");
+			  if (lqmode == true) {
+				  which = which + "lb";
+			  }
+			  else {
+				which = which;  
+			  }
+			  if (which != "bgc"){
+				  $('body').css('background-image', "url('assets/"+which+".png')");
+			  }
+			  if (bg_custom == undefined && which == "bgc") {
+				  console.info("Custom Background - undefined hq");
+				  $('body').css('background-image', "url('assets/custom_bg_tmp.png')");
+			  }
+			  else if (bg_custom == undefined && which == "bgclb") {
+				  console.info("Custom Background - undefined lq");
+				  $('body').css('background-image', "url('assets/custom_bg_tmplb.png')");
+			  }
+			  else if (which == "bgc" || which == "bgclb") {
+				  console.info("Custom Background");
+				  $('body').css('background-image', "url("+bg_custom+")");
+			  }
+			  else if (which == "bg9" || which == "bg9lb") {
+				  $('body').css('background-image', "url('assets/green.png')");
+			  }
+		  }
+		  
+		  function updateStats(){
+			  var disti = $("#distance-input").val();
+			  var nhiti = $("#hits-input").val();
+			  var hitpi = $("#hitpercent-input").val();
+			  var missi = $("#misses-input").val();
+			  var mispi = $("#misspercent-input").val();
+			  var perfi = $("#perfects-input").val();
+			  var plati = $("#perfectpercent-input").val();
+			  var pcomi = $("#lc-input").val();
+			  var fcomi = $("#mc-input").val();
+			  
+			  
+			  var temp1 = Number(disti).toFixed(2);
+			  var temp2 = Number(nhiti);
+			  var temp3 = Number(missi);
+			  var temp4 = Number(perfi);
+			  
+			  $("#dist-text").text(numberWithCommas(temp1));
+			  $("#notes-hit").text(numberWithCommas(temp2));
+			  $("#notes-hit-percent").text("("+hitpi+"%)");
+			  $("#notes-missed").text(numberWithCommas(temp3));
+			  $("#notes-missed-percent").text("("+mispi+"%)");
+			  $("#perfects").text(numberWithCommas(temp4));
+			  $("#perfects-latency").text(plati+"ms");
+			  $("#combo-total").text(Number(pcomi) + Number(fcomi));
+			  $("#partial-boost").text(pcomi);
+			  $("#full-boost").text(fcomi);
+		  }
+		  
+		  function goto(which) {
+			  if (which == 0) {
+				  // Main
+				  $("#stats-disp").addClass("toggle-off");
+				  $("#menu-stat").addClass("toggle-off");
+				  $("#gotomain").addClass("toggle-off");
+				  $("#mainmenu").removeClass("toggle-off");
+				  $("#menu-main").removeClass("toggle-off");
+				  $("#gotostats").removeClass("toggle-off");
+				  $("#plankton").removeClass("stats");
+			  }
+			  else if (which == 1) {
+				  // Stats
+				  $("#stats-disp").removeClass("toggle-off");
+				  $("#menu-stat").removeClass("toggle-off");
+				  $("#gotomain").removeClass("toggle-off");
+				  $("#mainmenu").addClass("toggle-off");
+				  $("#menu-main").addClass("toggle-off");
+				  $("#gotostats").addClass("toggle-off");
+				  $("#plankton").addClass("stats");
+			  }
+		  }
+		  
+		  var fileelem = document.querySelector("#albumart-uploader");
+		  var fsd = document.querySelector("#albumimg");
+		  fsd.addEventListener("click", (e) => {
+			  if (fileelem) {
+				  fileelem.click();
+			  }
+		  }, false);
+		  
+		  
+		  function handleFileSelect2() {               
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+          Swal.fire({title: 'Uh-oh.',text: 'File APIs are not fully supported on this browser.',icon: 'error',confirmButtonText: 'Okay'});
+          return;
+        }   
+        var input = document.querySelector("#albumart-uploader");
+        if (!input) {
+		  Swal.fire({title: 'Yikes.',text: 'Could not find target Element. This is not your fault.',icon: 'error',confirmButtonText: 'Okay'});
+        }
+        else if (!input.files) {
+			Swal.fire({title: 'Oops.',text: "This browser doesn't seem to support the `files` property of file inputs.",icon: 'error',confirmButtonText: 'Okay'});
+        }
+        else if (!input.files[0]) {
+          Swal.fire({title: 'Well...',text: 'No file selected.',icon: 'error',confirmButtonText: 'Okay'});  
+		}
+        else {
+          var file = input.files[0];
+			//if (!file.type.startsWith("image/")){ continue };
+          var fr = new FileReader();
+			fr.readAsDataURL(file);
+          fr.onload = function(){ 
+			  console.log(fr.result);
+			  $('#albumimg').attr('src', fr.result);
+		  };
+			fr.onerror = function (error){
+				console.error("SPAGHET ERROR: ", error);
+			}
+        }
+      }
+		  
+		  function handleFileSelect() {               
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+          Swal.fire({title: 'Uh-oh.',text: 'File APIs are not fully supported on this browser.',icon: 'error',confirmButtonText: 'Okay'});
+          return;
+        }   
+        var input = document.querySelector("#bgcustom");
+        if (!input) {
+		  Swal.fire({title: 'Yikes.',text: 'Could not find target Element. This is not your fault.',icon: 'error',confirmButtonText: 'Okay'});
+        }
+        else if (!input.files) {
+			Swal.fire({title: 'Oops.',text: "This browser doesn't seem to support the `files` property of file inputs.",icon: 'error',confirmButtonText: 'Okay'});
+        }
+        else if (!input.files[0]) {
+          Swal.fire({title: 'Well...',text: 'No file selected.',icon: 'error',confirmButtonText: 'Okay'});  
+		}
+        else {
+          var file = input.files[0];
+			//if (!file.type.startsWith("image/")){ continue };
+          var fr = new FileReader();
+			fr.readAsDataURL(file);
+          fr.onload = function(){ 
+			  console.log(fr.result);
+			  bg_custom = fr.result;
+			  $('body').css('background-image', "url("+fr.result+")");
+		  };
+			fr.onerror = function (error){
+				console.error("ITALIAN NOODLE ERROR: ", error);
+			}
+        }
+      }
+		  
+		  
+		function leftPad(value, length) {
+    		value = String(value);
+    		length = length - value.length;
+    		return ('0'.repeat(length) + value);
+		}
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		let state1 = 0;
+		let state2 = 0;
+		let state3 = 0;
+		
+		function showMenu(which){
+			let menu1 = $("#menu");
+			let menu2 = $("#about-overlay");
+			let menu3 = $("#help-overlay");
+			
+			// Only allow one menu to be open at any time
+			// Messy but works well
+			if (which == 0){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state1){
+					menu1.removeClass("toggle-off");
+					state1 = 1;
+					state2 = 0;
+					state3 = 0;
+				}
+				else if (state1){
+					menu1.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			if (which == 1){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state2){
+					menu2.removeClass("toggle-off");
+					state1 = 0;
+					state2 = 1;
+					state3 = 0;
+				}
+				else if (state2){
+					menu2.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			if (which == 2){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state3){
+					menu3.removeClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 1;
+				}
+				else if (state3){
+					menu3.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			
+		}
+		  
+		  function printVersion(){
+			  return version;
+		  }
+		  
+	  	function downloadImg(){
+			let menubar = $("#bottombeard");
+			let menu1 = $("#menu");
+			let menu2 = $("#about-overlay");
+			let menu3 = $("#help-overlay");
+			var filename;
+			var songname = $("#songname").text();
+			var artistname = $("#artist").text();
+			// Close any menus if they're active
+			menu1.addClass("toggle-off");
+			menu2.addClass("toggle-off");
+			menu3.addClass("toggle-off");
+			// Temporarily hide the bottom menu
+			menubar.addClass("toggle-off-alt");
+			// Hide any tooltips if they're visible
+			tippy.hideAll();
+			$('.toggle-off-alt-1').addClass('toggle-off-alt').removeClass('toggle-off-alt-1');
+			if (songname.length == 0) {songname = "Untitled";}
+			if (artistname.length == 0) {artistname = "Various Artists";}	
+				filename = songname+" - "+artistname+" - Bifrost.png";
+			//document.documentElement.requestFullscreen();
+			html2canvas(document.body, { allowTaint: true, useCORS: true, width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080 }).then((canvas) => {
+				canvas.crossOrigin = 'Anonymous'; // Potential fix for CORS check failure, might not be needed
+				img = canvas.toDataURL("image/png"); 
+				downloadURI(img, filename);
+			})
+			// Now re-enable the menu bar
+			menubar.removeClass("toggle-off-alt");
+			$('.toggle-off-alt').addClass('toggle-off-alt-1').removeClass('toggle-off-alt');
+			Swal.fire({title: 'Just so you know',text: 'If the page breaks, please refresh the page.',icon: 'info',confirmButtonText: 'Ahou'});
+		}
+		
+		function downloadURI(uri, name){
+			var link = document.createElement("a");
+			link.download = name;
+			link.href = uri;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			delete link;
+		}
+	  
+	  </script>
+	  <!--
+		TODO: 
+		Add support for higher difficulty levels than 10 (just the numbers are shown, colors unknown for now)
+		Add a new page for the stats (Distance, Runes Hit, Missed Runes, Perfect Hits, Combos Activated in this order)
+		Add "Next" and "Previous" button to switch between Song Info and Stats page
+		
+	  -->
+	  <script>
+		$("#body").imagesLoaded({ background: true },function(imgLoad) {
+		  $("#preloader").fadeOut('slow');
+			$("#bottombeard").removeClass("toggle-off");
+	  });
+		
+	  </script>
+  </body>
+</html>
