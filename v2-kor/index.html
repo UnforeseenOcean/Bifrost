@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Primary Meta Tags -->
+	<title>비프로스트 - 검은수염</title>
+	<meta name="title" content="비프로스트 - 검은수염">
+	<meta name="description" content="검은수염의 라그나로크 비디오 에셋 생성기. ">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://unforeseenocean.github.io/Bifrost/">
+	<meta property="og:title" content="비프로스트 - 검은수염">
+	<meta property="og:description" content="검은수염의 라그나로크 비디오 에셋 생성기. ">
+	<meta property="og:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://unforeseenocean.github.io/Bifrost/">
+	<meta property="twitter:title" content="비프로스트 - 검은수염">
+	<meta property="twitter:description" content="검은수염의 라그나로크 비디오 에셋 생성기. ">
+	<meta property="twitter:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
+	  
+	<style>
+		@font-face {
+			font-family: "Carter One";
+			src: url("assets/font/CarterOne-Regular.ttf");
+			font-display: block;
+		}
+        @font-face {
+			font-family: "Katuri";
+			src: url("assets/font/Katuri.ttf");
+			font-display: block;
+		}
+		html, body {
+    		height: 100%;
+		}
+		body {
+			margin: 0;
+		}
+        div {
+            cursor: url("assets/Menu_Cursor_32px.png"), auto;
+        }
+		.ord-1 {
+			z-index: 9999;
+		}
+		.ord-2 {
+			z-index: 2;
+		}
+		.ord-3 {
+			z-index: 3;
+		}
+		.ord-4 {
+			z-index: -9999;
+		}
+		
+		.ord-col {
+			flex-direction: column;
+		}
+		.abs {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		.flex-container {
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.hack-center-all {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.plank-menu {
+			display: flex;
+			background: url("assets/Menu_Main_Panel_bis.png") no-repeat;
+			background-position: center;
+            background-size: 100% 100%;
+			min-width: 900px;
+			max-height: 760px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+		}
+		.plank-menu.stats {
+			display: flex;
+			background: url("assets/Menu_Main_Panel_bis.png") no-repeat;
+			background-position: center;
+            background-size: 100% 100%;
+			min-width: 810px;
+            min-height: 850px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+		}
+		/*
+		* Straight from the official site
+		* Base color: 
+		* Bronze: #6D1805;
+		* Silver: #606060;
+		* Gold:   #AA7D05;
+		*/
+		.level1{color:#3FD7C8;}
+		.level2{color:#18abf0;}
+		.level3{color:#124AFF;}
+		.level4{color:#8914FF;}
+		.level5{color:#BD2CF3;}
+		.level6{color:#ED22A2;}
+		.level7{color:#D0082D;}
+		.level8{color:#F03023;}
+		.level9{color:#E9711a;}
+		.level10{color:#FBB227;}
+        .text-bronze {
+            color: #DE8429;
+        }
+        .text-silver {
+            color: #B3CFEF;
+        }
+        .text-gold {
+            color: #F6BC00;
+        }
+		.custom-checkbox{
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			top: 0px;
+			background: url("assets/Checkbox.png") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox:hover{
+			background: url("assets/Checkbox.png") no-repeat;
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox.selected{
+			background: url("assets/Checkbox_Checked.png") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-checkbox input[type="checkbox"]{
+			margin: 0;
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			z-index: 2;            
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+			outline: none;
+			opacity: 0;
+		}
+		.custom-radio{
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			top: 3px;
+			background: url("assets/radio_blank.png") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-radio:hover{            
+			background: url("assets/radio_blank.png") no-repeat;
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+			background-size: 32px 32px;
+		}
+		.custom-radio.selected{
+			background: url("assets/radio_sel.png") no-repeat;
+			background-size: 32px 32px;
+		}
+		.custom-radio input[type="radio"]{
+			margin: 1px;
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			z-index: 2;            
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+			outline: none;
+			opacity: 0;
+		}
+		.buttons-32px {
+			width: 32px;
+			height: 32px;
+			transition: all 0.25s;
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+		}
+		.buttons-48px {
+			width: 48px;
+			height: 48px;
+			transition: all 0.25s;
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+		}
+		.buttons-64px {
+			width: 64px;
+			height: 64px;
+			transition: all 0.25s;
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+		}
+		.cursor-pointer  {
+			cursor: url("assets/Menu_Cursor_32px_h.png"), auto !important;
+		}
+		.cursor-help {
+			cursor: help;
+		}
+		.cursor-no {
+			cursor: not-allowed;
+		}
+		
+		.buttons-32px:hover {
+			transform: scale(1.2);
+		}
+		.buttons-48px:hover {
+			transform: scale(1.2);
+		}
+		.buttons-64px:hover {
+			transform: scale(1.2);
+		}
+		.bronze, .silver, .gold { min-width: 100px; min-height: 100px; }
+		
+		.error-screen {
+			background-color: black;
+			color: white;
+			display: none;
+		}
+		.error-icon {
+			width: 128px;
+			height: 128px;
+		}
+		
+		@media only screen and (max-width: 1279px){
+			.body-container {
+				display: none;
+			}
+			.preloader-container {
+				display: none;
+			}
+			.error-screen {
+				display: flex;
+			}
+		}
+		
+		@media only screen and (max-height: 719px){
+			.body-container {
+				display: none;
+			}
+			.preloader-container {
+				display: none;
+			}
+			.error-screen {
+				display: flex;
+			}
+		}
+		
+		.menu-bar-bottom {
+			bottom: 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			gap: 10px;
+			align-items: flex-start;
+			position: absolute;
+			background-color: rgba(0,0,0,0.50);
+			padding: 8px;
+			width: 100%;
+			z-index: 15;
+		}
+		
+		.song-info {
+			font-family: "Katuri";
+			position: relative;
+			left: -7px;
+			top: -55px;
+            display: flex;
+            flex-direction: column;
+            max-height: 350px;
+		}
+		.song-info-text {
+			display: flex;
+			flex-direction: column;
+			font-size: 1.5em;
+			color: white;
+			position: relative;
+			left: 163px;
+			bottom: -39px;
+			width: 360px;
+			z-index: 1;
+		}
+		.song-name{
+			text-transform: uppercase;
+			display: inline-block;
+			font-size: 1em;
+			line-height: 0.95em;
+			height: 35px;
+			z-index: 1;
+			width: max-content;
+		}
+		.artist-name{
+			display: inline-block;
+			width: max-content;
+			height: 48px;
+			z-index: 1;
+		}
+		.icon {
+			width: 30px;
+			height: 30px;
+		}
+        .clock {
+            width: 20px;
+            height: 20px;
+        }
+		.song-time {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+            text-align: center;
+			color: white;
+			gap: 3px;
+			font-size: 1.5em;
+            line-height: 0.9em;
+			background: url("assets/Menu_Plank_Small.png") no-repeat;
+            background-size: contain;
+			padding: 10px 20px 10px 20px;
+			border: hidden;
+			max-width: 90px;
+			max-height: 70px;
+			z-index: 999999;
+			position: relative;
+			left: 33px;
+			top: 15px;
+            min-width: 100px;
+		} 
+		.nomargin{
+			margin: 0;
+		}
+		.img-frame{
+			position: relative;
+			width: 165px;
+			height: 165px;
+			left: 21px;
+			top: 73px;
+			z-index: 2;
+			
+		}
+		.album-image{
+			position: relative;
+			left: -134px;
+			top: 74px;
+			width: 140px;
+			height: 140px;
+			z-index: 1;
+		}
+        .album-image-frame {
+            position: relative;
+            left: -24px;
+            top: -28px;
+        }
+		.img-small {
+			width: 150px;
+			height: 150px;
+		}
+		
+		.medals {
+			height: 180px;
+			display: flex;
+			flex-direction: row;
+			gap: 30px;
+            position: relative;
+            bottom: 40px;
+		}
+		.medal-container{
+			height: 180px;
+			width: 180px;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+            left: -60px;
+			/*bottom: 303px;*/
+		}
+		.bronze, .silver, .gold {
+			min-width: 150px;
+			min-height: 150px;
+			position: relative;
+			z-index: 4;
+			top: 0;
+			left: 149px;
+		}
+		.medal-bg {
+			z-index: 2;
+			height: 150px;
+			width: 150px;
+		}
+		.song-difficulty-container{
+			display: flex;
+			flex-direction: row;
+			position: relative;
+			left: 525px;
+			bottom: 94px;
+			z-index: 1;
+			width: 120px;
+		}
+		.difficulty-bg {
+			width: 110px;
+			height: 110px;
+			z-index: 1;
+			position: relative;
+		}
+		.difficulty-fg {
+			width: 100px;
+			height: 100px;
+			position: relative;
+			bottom: -3px;
+			right: 102px;
+			z-index: 1;
+		}
+		.diff-cntr {
+			font-size: 3em;
+			position: relative;
+			display: flex;
+			min-width: 100px;
+			min-height: 100px;
+			justify-content: center;
+			align-items: center;
+            text-align: center;
+			bottom: -2px;
+			left: -103px;
+		}
+		.songinfo-plank-bg {
+			background: url("assets/Menu_SongSelection_Support.png") no-repeat;
+            background-size: 100% 100%;
+			position: relative;
+			display: block;
+			z-index: 0;
+			width: 645px;
+			min-height: 141px;
+			bottom: 11px;
+			left: 10px;
+		}
+        .album-image-container {
+            position: relative;
+            top: 146px;
+        }
+		.plank-menu-top{
+			flex-direction: row;
+		}
+		body {
+			background-image: url("assets/debug_bglq.png");
+			overflow: hidden;
+			background-repeat: no-repeat; 
+   			background-color: #222842;
+   			background-position: center;
+			background-size: cover;
+            cursor: url("assets/Menu_Cursor_32px.png");
+		}
+		label {
+			font-family: "Katuri";
+			font-size: 1.6em;
+			color: white;
+		}
+		@keyframes spinner {
+			0% {
+				transform: rotate(0deg);
+				transform-origin: center center;
+			}
+			100% {
+				transform: rotate(359deg);
+				transform-origin: center center;
+			}
+		}
+		.menu-overlay{
+			position: fixed;
+			z-index: 9999;
+			background-color: rgba(0,0,0,0.75);
+			display: flex;
+			flex-direction: row;
+		}
+		.about-overlay{
+			position: fixed;
+			z-index: 9999;
+			background-color: rgba(0,0,0,0.75);
+			display: flex;
+			flex-direction: row;
+		}
+		.about-div {
+			display: flex;
+			flex-direction: column;
+			padding: 20px;
+			gap: 5px;
+			justify-content: center;
+			align-items: center;
+		}
+		.menu {
+			display: flex;
+			flex-direction: row;
+			padding: 20px;
+			gap: 40px;
+		}
+		.logo-small{
+			height: 120px;
+			width: auto;
+		}
+		.logo-xs {
+			height: 64px;
+			width: auto;
+		}
+		.icon-mid {
+			height: 64px;
+			width: auto;
+			transition: all 0.25s;
+		}
+		.wrapper-about{
+			display: flex;
+			flex-direction: column;
+			padding: 5px;
+			gap: 5px;
+			justify-content: center;
+			align-items: center;
+		}
+		.wrapper-icons {
+			display: flex;
+			flex-direction: row;
+			padding: 5px;
+			gap: 15px;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.menu-col1, .menu-col2, .menu-col3 {
+			display: flex;
+			flex-direction: column;
+		}
+		.white-text {
+			font-family: "Katuri";
+			font-size: 1.6em;
+			color: white;
+		}
+		
+		.icon-mid:hover {
+			transform: scale(1.2);
+		}
+		
+		.toggle-off {
+			display: none;
+		}
+		.toggle-off-alt {
+			opacity: 0;
+		}
+		.toggle-off-alt-1 {
+			opacity: 0.25;
+		}
+		.explicit-indicator {
+			position: relative;
+			left: 490px;
+			bottom: -8px;
+			z-index: 2;
+			width: 32px;
+		}
+		.explicit-icon {
+			height: 32px;
+			width: auto;
+		}
+		.icon-rune {
+			height: 38px;
+			width: auto;
+		}
+		.custom-name {
+			font-size: 0.8em;
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+		}
+		.custom-author-container {
+			display: inline-flex;
+			flex-direction: row;
+			line-height: 36px;
+			position: relative;
+			left: -4px;
+			bottom: -83px;
+            z-index: 9999999;
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+		}
+		
+		.preloader-container {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			  justify-content: center;
+			  height: 100%;
+			  padding: 0;
+			  margin: 0;
+			background-color: rgb(58,58,58);
+		  }
+		  .ord-first {
+			  z-index: 999999999;
+		  }
+		  .ord-second {
+			  z-index: 999999998;
+		  }
+		  .ord-third {
+			  z-index: 999999997;
+		  }
+		  .ord-fourth {
+			  z-index: 999999996;
+		  }
+		  .ship-wharf {
+			  display: flex;
+			  flex-direction: column;
+			  min-width: 300px;
+			  min-height: 300px;
+			  max-width: 300px;
+			  max-height: 300px;
+			  clip-path: circle(42.5%);
+			  position: relative;
+		  }
+		  .drakkar {
+			  width: 128px;
+			  animation: wave 3s linear infinite;
+			  transform-origin: center center;
+		  }
+		  .wavefront {
+			  animation: wave 3s linear infinite reverse;
+			  transform-origin: center center;
+		  }
+		  .waveback {
+			  animation: wave 3s linear infinite reverse;
+			  animation-delay: 0.25s;
+			  transform-origin: center center;
+		  }
+		  .sail {
+			  position: absolute;
+			  width: 150px;
+			  animation: wave 3s linear infinite reverse;
+			  transform-origin: center center;
+			  left: 76px;
+			  top: 110px;
+		  }
+		  .wave-one {
+			  position: absolute;
+			  animation: wave 3s linear infinite;
+			  transform-origin: 45% center;
+			  min-width: 300px;
+			  min-height: 150px;
+			  left: 20px;
+			  top: 179px;
+		  }
+		  .wave-two {
+			  position: absolute;
+			  animation: wave 3s linear infinite;
+			  animation-delay: 0.25s;
+			  transform-origin: 45% center;
+			  min-width: 300px;
+			  min-height: 150px;
+			  left: 20px;
+			  top: 170px;
+		  }
+		  .dockhand {
+			  font-family: "Katuri";
+			  color: white;
+			  font-size: 2em;
+			  line-height: 0.125em;
+		  }
+		
+		.low-drag {
+			margin-bottom: 0;
+		}
+		.fix-checkbox {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		
+		input.numberinput {
+			font-weight: bold;
+			font-family: "Katuri";
+			font-size: 1.1em;
+            width: 64px;
+		}
+		.padding-left-fix {
+			margin: 0;
+			padding-left: 3px;
+		}
+		.margin-top-fix {
+			padding: 9px 0px 0px 0px;
+		}
+		.tippy-box {
+			z-index: 9999999999;
+		}
+		.swal2-container {
+  			z-index: 999999999999 !important;
+		}
+		.chonky {
+			font-size: 3em;
+		}
+		.stats-container {
+			font-family: "Katuri";
+		}
+		.stats-text {
+			z-index: 46;
+			color: white;
+            position: relative;
+		}
+		.stats-text.large-caps {
+			font-size: 1.80em;
+			text-transform: uppercase;
+		}
+		.stats-text.numbers {
+			font-size: 1.8em;
+			width: 114px;
+			height: 36px;
+			display: inline-block;
+			width: min-content;
+		}
+		.numbers-disp {
+			display: inline-block;
+			width: min-content;
+		}
+		.stats-text.numbers.small {
+			font-size: 1.3em;
+		}
+		.stats-binder {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.stats-graphic {
+			width: 150px;
+			height: auto;
+		}
+		.binder-sub {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			  justify-content: center;
+		}
+		.adj3 {
+			position: relative;
+			bottom: 84px;
+			right: 2px;
+			font-size: 1.25em;
+		}
+		.stats-text.numbers.adj3 {
+			font-size: 1.5em;
+		}
+		.stats-bottom {
+			display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+			position: relative;
+            max-width: 600px;
+            column-gap: 60px;
+            bottom: 50px;
+            justify-content: space-around;
+		}
+		.blue {
+			color: #00FFFA;
+		}
+		.yellow {
+			color: #FFEB00;
+		}
+		
+		.turn-inline {
+			display: inline;
+		}
+		.fit {
+			display: inline-block;
+			white-space: nowrap;
+		}
+        .stone-slab {
+            background: url("assets/Menu_Title_Stone.png") no-repeat;
+            height: 182px;
+            position: relative;
+            top: 100px;
+            left: 60px;
+            text-align: center;
+        }
+        .stone-slab-n {
+            background: url("assets/Menu_Title_Stone.png") no-repeat;
+            height: 182px;
+            width: 516px;
+            position: relative;
+            top: -80px;
+            left: 0px;
+            text-align: center;
+        }
+        .toptext {
+            position: relative;
+            font-family: "Katuri";
+            font-size: 3.5em;
+            color: black;
+            top: 45px;
+            left: -60px;
+            text-align: center;
+        }
+        .toptext-n {
+            position: relative;
+            font-family: "Katuri";
+            font-size: 3.5em;
+            color: black;
+            top: 45px;
+            left: 0px;
+            text-align: center;
+        }
+        .distance-dragon {
+            background-image: url("assets/Menu_Ingame_Score.png"); background-repeat: no-repeat;
+            background-size: contain;
+            height: 276px;
+            position: relative;
+            top: -130px;
+            font-family: "Katuri";
+        }
+        .distance-dragon.hs {
+            background-image: url("assets/Menu_Ingame_Score_Gold.png");
+        }
+        .distance-block {
+            background-image: url("assets/Menu_Ingame_Score_Support.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 65px;
+            width: 420px;
+            position: relative;
+            left: 114px;
+            top: 78px;
+            font-size: 2.6em;
+        }
+        .distance-block.hs {
+            background-image: url("assets/Menu_Ingame_Score_Support_Gold.png");
+        }
+        .dist-text {
+            position: relative;
+            left: 10px;
+        }
+        .distance-text {
+            background-image: url("assets/Menu_Leaderboard_Score.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 45px;
+            width: 200px;
+            position: relative;
+            color: white;
+            left: 205px;
+            top: -52px;
+            text-align: center;
+            font-size: 35px;
+        }
+        .distance-meter {
+            position: relative;
+            top: -10px;
+        }
+        .stats-bg {
+            background: url("assets/Menu_Settings_Score.png") no-repeat;
+            background-size: 100% 100%;
+            width: 180px;
+            height: 80px;
+        }
+        button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+        }
+        [type="file"], [type="number"] {
+            cursor: url("assets/Menu_Cursor_32px_h.png"), auto;
+        }
+        
+        
+		textarea {
+			color: white;
+		}
+		  @keyframes wave {
+			  0% {
+				  transform: rotate(0deg);
+			  }
+			  100% {
+				  transform: rotate(359deg);
+			  }
+		  }
+	  </style>
+	  <script src="js/jquery-3.6.3.min.js"></script>
+	  <script src="js/imagesloaded.pkgd.min.js"></script>
+  </head>
+  <body id="body">
+	  <div class="preloader-container" id="preloader" data-html2canvas-ignore>
+		<div class="ship-wharf">
+			<div class="sail ord-second">
+				<img class="drakkar" src="assets/waverider_drakkar.svg" alt="How come did the preloader break?!">
+			</div>
+			<div class="wave-one ord-first">
+				<img class="wavefront" src="assets/waverider_wave1.svg" alt="Noooooooooo!">
+			</div>
+			<div class="wave-two ord-third">
+					<img class="waveback" src="assets/waverider_wave2.svg" alt="How come?!">
+			</div>
+		</div> 
+		<div class="dockhand">
+			<p>로딩중</p>
+		</div>
+	</div>
+	  <div class="flex-container ord-col ord-first abs error-screen" id="error" data-html2canvas-ignore>
+			<img src="assets/Redistributable/ui/error.svg" class="error-icon" alt="error"> 
+	  	<h1>프로그램을 표시하기에 화면이 너무 작습니다.</h1>
+		  <p>화면 해상도를 변경해주세요.</p>
+		  <p>최소 화면 해상도는 <b>1024x768.</b> 입니다.</p>
+	  </div>
+	  <div class="flex-container ord-col body-container" id="main">
+			<div class="plank-menu" id="plankton">
+				<div class="stats-container toggle-off" id="stats-disp">
+                    <div class="stats-top">
+                        <div class="stone-slab-n">
+                        <span class="toptext-n">성적</span>
+                    </div>
+                    </div>
+                    <div class="stats-bottom">
+                    <div class="stats-binder">
+						<img class="stats-graphic" src="assets/Hits.png" alt="notes hit">
+						<div class="stats-text large-caps">노트 침</div>
+							<div class="binder-sub stats-bg">
+								<div class="stats-text numbers adj1 fit"><span id="notes-hit" class="numbers-disp">999,999</span></div>
+								<div class="stats-text numbers small adj2" id="notes-hit-percent">(100%)</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/Missed.png" alt="notes missed">
+						<div class="stats-text large-caps">노트 빗나감</div>
+							<div class="binder-sub stats-bg">
+								<div class="stats-text numbers adj1 fit" ><span id="notes-missed" class="numbers-disp">999,999</span></div>
+								<div class="stats-text numbers small adj2" id="notes-missed-percent">(100%)</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/Perfects.png" alt="perfect hits">
+						<div class="stats-text large-caps">완벽한 노트</div>
+							<div class="binder-sub stats-bg">
+								<div class="stats-text numbers adj1 fit" ><span id="perfects" class="numbers-disp">100</span>%</div>
+								<div class="stats-text numbers small adj2" id="perfects-latency">-999ms</div>
+							</div>
+						</div>
+						<div class="stats-binder">
+						<img class="stats-graphic" src="assets/Combos.png" alt="combos">
+						<div class="stats-text large-caps">콤보</div>
+							<div class="binder-sub stats-bg">
+								<div class="stats-text numbers adj1" id="combo-total">256</div>
+								<div class="stats-text numbers small adj2"><span class="turn-inline">(</span><span class="blue turn-inline" id="partial-boost">64</span><span class="turn-inline">&nbsp;+&nbsp;</span><span class="yellow turn-inline" id="full-boost">64</span>)</div>
+							</div>
+						</div>
+                    </div>
+				</div>
+				<div class="main-container" id="mainmenu">
+                    <div class="stone-slab">
+                        <span class="toptext">곡 정보</span>
+                    </div>
+				<div class="plank-menu-top" id="pl-main-top">
+				<div class="song-info">
+				<div class="album-image-container">
+					<div class="album-image-frame" id="albumbtn">
+						<img src="assets/Menu_Albulm_Frame.png" class="img-frame cursor-pointer" id="albumframe" alt="album frame">
+						<img src="assets/default.png" class="album-image" alt="album art" id="albumimg">
+						<input type="file" class="toggle-off" accept=".jpg, .jpeg, .png" id="albumart-uploader" onChange="handleFileSelect2()" hidden>
+					</div>
+						<div class="song-time" id="clock">
+								<img src="assets/icon_songlength.png" class="clock icon" alt="time">
+								<p id="song-time" class="nomargin cursor-pointer">3:30</p>
+						</div>
+					</div>
+                    <div class="songinfo-plank-bg">
+                        <div class="song-info-text">
+                            <div class="song-name fit cursor-pointer" id="songname">Welcome to Asgard</div>
+                            <div class="artist-name fit cursor-pointer" id="artist">Manaberry</div>
+                        </div>
+                        <div class="explicit-indicator cursor-pointer toggle-off-alt-1" id="explicit">
+                            <img class="explicit-icon" src="assets/explicit_song.png" alt="E">
+                        </div>
+                        <div class="song-difficulty-container" id="diffcontainer">
+                            <img class="difficulty-bg" src="assets/bg_level.png" alt="difficulty background">
+                            <div class="difficulty-fg diff-cntr level1" id="difficulty-ol">1</div>
+                        </div>
+					</div>
+					</div>
+                    <div class="medals" id="medals-container">
+						<div class="medal-container">
+							<img class="medal bronze cursor-pointer" id="bronze-medal" src="assets/medals/bronze_medal_c.png" alt="medal bronze">
+							<img class="medal-bg" src="assets/Medal_Backplate.png" alt="medal background">
+						</div>
+						<div class="medal-container">
+							<img class="medal silver cursor-pointer" id="silver-medal" src="assets/medals/silver_medal_c.png" alt="medal silver">
+							<img class="medal-bg" src="assets/Medal_Backplate.png" alt="medal background">
+						</div>
+						<div class="medal-container">
+							<img class="medal gold cursor-pointer" id="gold-medal" src="assets/medals/gold_medal_c.png" alt="medal gold">
+							<img class="medal-bg" src="assets/Medal_Backplate.png" alt="medal background">
+						</div>
+					</div>
+				</div>
+				<div class="plank-menu-bottom" id="pl-main-bot">
+					
+					<div class="binder custom-author-container white-text toggle-off-alt-1" id="custom-author-div">
+							<img class="icon-rune" id="rune" src="assets/icon_custom_author.png" alt="rune">
+							<div class="custom-name" id="custom-author">Blackbeard</div>
+					</div>
+                    <div class="distance-dragon" id="distance-dragon">
+                        <div class="distance-block" id="distance-block">
+                            <span class="dist-text">향해 거리</span>
+                            <div class="distance-text">
+                                <span id="dist-text" class="distance-meter cursor-pointer">0,000.00m</span>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			</div>
+		  <div class="about-overlay toggle-off" id="help-overlay" data-html2canvas-ignore>
+		  	<div class="about-div">
+			  <div class="white-text chonky">비프로스트 사용 방법</div>
+			  <div class="white-text">1. 앨범 아트를 눌러 새로운 앨범 아트를 추가하세요.</div>
+			  <div class="white-text">2. <img class="buttons-48px" src="assets/button_settings.svg" alt="settings"> 를 눌러 메뉴를 여세요.</div>
+			  <div class="white-text">3. 필요한 값을 지정하세요.</div>
+				<div class="white-text">참고: 커스텀 배경화면을 지정하려면 반드시 배경화면 적용 버튼을 눌러야 합니다.</div>
+				<div class="white-text">4. <img class="buttons-48px" src="assets/button_settings.svg" alt="settings"> 를 눌러 메뉴를 닫으세요.</div>
+				<div class="white-text">5. <img class="buttons-48px" src="assets/Redistributable/ui/download.svg" alt="about"> 를 눌러 완성된 이미지를 다운로드 하세요.</div>
+				<div class="white-text">다운로드된 이미지의 크기는 해상도와 관계 없이 1920x1080 입니다.</div>
+				<div class="white-text">성적 페이지를 보려면 <img class="buttons-48px" src="assets/ic_back_arrow_r.png" alt="to main"> 를 누르세요.</div>
+				<div class="white-text">다시 원래 화면으로 돌아오려면 <img class="buttons-48px" src="assets/ic_back_arrow_l.png" alt="to main"> 를 누르세요.</div>
+			  </div>
+		  </div>
+		  <div class="about-overlay toggle-off" id="about-overlay" data-html2canvas-ignore>
+		  	<div class="about-div">
+				<img class="logo-small" src="assets/bifrost_logo_blk.svg" alt="bifrost logo">
+			  <div class="white-text">비프로스트 - 라그나로크를 위한 비디오 에셋 생성기</div>
+			  <div class="white-text">검은수염이 만들었음</div>
+			  <div class="white-text">그래픽은 Wanadev Studio가 제작.</div>
+			  <div class="white-text">&copy; 2023 Wanadev Studio. All rights reserved.</div>
+				<div class="wrapper-about">
+					<div class="wrapper-icons">
+				<img class="logo-xs" src="assets/wanadev_logo_blk.svg" alt="wanadev logo">
+					<img class="logo-xs" src="assets/blackbeard_logo_blk.svg" alt="blackbeard logo"></div>
+					<div class="white-text">라그나로크에 대해 더 알아보세요!</div>
+					<div class="wrapper-icons">
+					<a href="https://www.ragnarock-vr.com/home" id="ragnarock-link-hp">
+						<img class="icon-mid" src="assets/Redistributable/ui/globe.svg" alt="globe"></a>
+					<a href="https://www.oculus.com/experiences/quest/3749621795127676/" id="ragnarock-link-meta">
+						<img class="icon-mid" src="assets/Redistributable/game/meta.svg" alt="meta logo"></a>
+					<a href="https://store.steampowered.com/app/1345820/Ragnarock/" id="ragnarock-link-steam">
+						<img class="icon-mid" src="assets/Redistributable/game/steam.svg" alt="steam logo"></a>
+					</div>
+					<div class="white-text">RagnaCustoms, Ragnarock 커뮤니티, 저의 친구들과 BloculusMonster에게 특별히 감사를 표합니다!</div>
+					<div class="white-text">또한 Nicolas에게 감사를 표합니다!</div>
+                    <div class="white-text">Version 2.0.0 (Heimdall)</div>
+                    <div class="white-text">본문에 사용된 안동엄마까투리체는 &copy; 안동시, 대한민국 및 TOGETHERGROUP</div>
+				</div>
+			  </div>
+		  </div>
+		  <div class="menu-overlay toggle-off" id="menu" data-html2canvas-ignore>
+		  	<div class="menu" id="menu-main">
+			  <div class="menu-col1">
+				  <div class="binder">
+				  <p class="white-text low-drag">곡 정보</p>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="togglemedal" id="showmedals" onChange="toggleMedals()" checked>
+				  <label for="showmedals" class="padding-left-fix">메달 보이기</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="checkbox_custom medal-selector" name="newradio" id="bronzemedal" onChange="updateMedals()">
+				  <label for="bronzemedal" class="padding-left-fix">등내</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="checkbox_custom medal-selector" name="newradio" id="silvermedal" onChange="updateMedals('none')">
+				  <label for="silvermedal" class="padding-left-fix">등외</label>
+				  </div>
+				  <div class="binder">
+				  <p class="white-text low-drag">난이도</p>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="diffinput" id="difficultysel" min="1" max="64" value="1" onChange="updateDiff()">
+				  <label for="difficultysel" class="padding-left-fix">레벨</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleLQ" id="lq" onChange="toggleLQ()" checked>
+				  <label for="toggleLQ" class="padding-left-fix">저용량 배경화면</label>
+				  </div>
+                  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleGold" id="gold" onChange="makeItRain()">
+				  <label for="toggleGold" class="padding-left-fix">새로운 최고기록</label>
+				  </div>
+                  <div class="binder fix-checkbox">
+				  <input type="checkbox" class="checkbox_custom" name="toggleDragon" id="dragon" onChange="showDragon()" checked>
+				  <label for="toggleDragon" class="padding-left-fix">향해 거리 보이기</label>
+				  </div>
+				</div>
+			  <div class="menu-col2">
+				  <div class="binder">
+				  <p class="white-text">배경화면</p>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg0" onChange="updateBG()">
+				  <label for="bg0" class="padding-left-fix">알프하임</label>
+				  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg1" onChange="updateBG()">
+				  <label for="bg1" class="padding-left-fix">아스가르드</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg2" onChange="updateBG()">
+				  <label for="bg2" class="padding-left-fix">무스펠하임</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg3" onChange="updateBG()">
+				  <label for="bg3" class="padding-left-fix">미드가르드</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg4" onChange="updateBG()">
+				  <label for="bg4" class="padding-left-fix">니다발리르</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg5" onChange="updateBG()">
+				  <label for="bg5" class="padding-left-fix">헬하임</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg6" onChange="updateBG()">
+				  <label for="bg6" class="padding-left-fix">Hellfest</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg7" onChange="updateBG()">
+				  <label for="bg7" class="padding-left-fix">공허</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg8" onChange="updateBG()">
+				  <label for="bg8" class="padding-left-fix">어두운 공허</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bg9" onChange="updateBG()">
+				  <label for="bg9" class="padding-left-fix">녹색 배경</label>
+					  </div>
+				  <div class="binder fix-checkbox">
+				  <input type="radio" class="bgselector" name="newradio1" id="bgc" onChange="updateBG()">
+				  <label for="bg8" class="padding-left-fix">커스텀 배경</label>
+					  </div>
+				  <div class="binder margin-top-fix">
+				  <input type="file" class="bguploader" name="bguploader" id="bgcustom" accept=".jpg, .jpeg, .png">
+					  </div>
+				  <div class="binder margin-top-fix">
+				  <input type="button" class="bguploader-sel" id="bgcustomapply" onClick="handleFileSelect()" value="배경 적용">
+					  </div>
+				</div>
+			  </div>
+			  <div class="menu toggle-off" id="menu-stat">
+			  <div class="menu-col1">
+				  <div class="binder">
+				  <p class="white-text low-drag">성적 설정</p>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="hits" id="hits-input" value="0" min="0" max="4294967295" onChange="updateStats()">
+				  <label for="hits" class="padding-left-fix">노트 침</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="hitpercent" id="hitpercent-input" value="0" min="0" max="100" onChange="updateStats()">
+				  <label for="hitpercent" class="padding-left-fix">퍼센트</label>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="misses" id="misses-input" value="0" min="0" max="4294967295" onChange="updateStats()">
+				  <label for="misses" class="padding-left-fix">노트 빗나감</label>
+					  <div class="binder">
+				  <input type="number" class="numberinput" name="misspercent" id="misspercent-input" value="0" min="0" max="100" onChange="updateStats()">
+				  <label for="misspercent" class="padding-left-fix">퍼센트</label>
+				  </div>
+				  </div>
+				  
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="perfects" id="perfects-input" min="0" value="0" max="100" onChange="updateStats()">
+				  <label for="perfects" class="padding-left-fix">완벽한 노트</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="perfectpercent" id="perfectpercent-input" min="-999" value="0" max="999" onChange="updateStats()">
+				  <label for="perfectpercent" class="padding-left-fix">노트 지연 값</label>
+				  </div>
+				  <!-- The total number of combos should update according to those two values -->
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="lowcombo" id="lc-input" value="0" min="0" max="256" onChange="updateStats()">
+				  <label for="lowcombo" class="padding-left-fix">콤보 (1단계)</label>
+				  </div>
+				  <div class="binder">
+				  <input type="number" class="numberinput" name="maxcombo" id="mc-input" value="0" min="0" max="256" onChange="updateStats()">
+				  <label for="maxcombo" class="padding-left-fix">콤보 (2단계)</label>
+					  
+				  </div>
+				</div>
+			  </div>
+		  </div>
+    </div>
+	  <div class="menu-bar-bottom toggle-off" id="bottombeard" data-html2canvas-ignore>
+		  <div class="buttons-48px cursor-pointer" id="menubtn" onclick="showMenu(0)"><img src="assets/button_settings.svg" alt="settings"></div>
+		  <div class="buttons-48px cursor-pointer" id="aboutbtn" onclick="showMenu(1)"><img src="assets/Redistributable/ui/icon_info.svg" alt="about"></div>
+		  <div class="buttons-48px cursor-pointer" id="helpbtn" onclick="showMenu(2)"><img src="assets/icon_about.svg" alt="help"></div>
+		  <div class="buttons-48px cursor-pointer" id="download" onclick="downloadImg()"><img src="assets/Redistributable/ui/download.svg" alt="about"></div>
+		  <div class="buttons-48px cursor-pointer" id="gotostats" onclick="goto(1)"><img src="assets/ic_back_arrow_r.png" alt="to stats"></div>
+		  <div class="buttons-48px cursor-pointer toggle-off" id="gotomain" onclick="goto(0)"><img src="assets/ic_back_arrow_l.png" alt="to main"></div>
+		  </div>
+	<script>
+		//This spaghetti web app developed in few days by Blackbeard
+	function customCheckbox(checkboxName){
+		var checkBox = $('input[name="'+ checkboxName +'"]');
+		$(checkBox).each(function(){
+			$(this).wrap( "<span class='custom-checkbox'></span>" );
+			if($(this).is(':checked')){
+				$(this).parent().addClass("selected");
+			}
+		});
+		$(checkBox).click(function(){
+			$(this).parent().toggleClass("selected");
+		});
+	}
+	
+		function customRadio(radioName){
+			var radioButton = $('input[name="'+ radioName +'"]');
+			$(radioButton).each(function(){
+				$(this).wrap( "<span class='custom-radio'></span>" );
+				if($(this).is(':checked')){
+					$(this).parent().addClass("selected");
+				}
+			});
+			$(radioButton).click(function(){
+				if($(this).is(':checked')){
+					$(this).parent().addClass("selected");
+				}
+				$(radioButton).not(this).each(function(){
+					$(this).parent().removeClass("selected");
+				});
+			});
+		}
+		// Calling customRadio function
+		$(document).ready(function (){
+			customRadio("newradio");
+			customRadio("newradio1");
+			customCheckbox("togglemedal");
+			customCheckbox("toggletime");
+			customCheckbox("togglediff");
+			customCheckbox("togglecustom");
+			customCheckbox("toggleexplicit");
+			customCheckbox("toggleLQ");
+            customCheckbox("toggleGold");
+            customCheckbox("toggleDragon");
+			console.log(version);
+		});
+	</script>
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="js/popper2.min.js"></script>
+    <!--<script src="js/bootstrap-4.4.1.js"></script>-->
+	  <script src="js/jquery.editable.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/html2canvas.js"></script>
+	<script src="js/tippy-bundle.umd.min.js"></script>
+	  <script src="js/sweetalert2.js"></script>
+	  <script src="js/fitty.min.js"></script>
+	  
+	  <script>
+		  var bg_custom;
+		  var album_img;
+		  var version = "2.0.0 KR (Heimdall) RC2";
+		  fitty("#songname", {minSize: 16, maxSize: 35});
+		  fitty("#artist", {minSize: 12, maxSize: 30});
+		  fitty("#dist-text", {minSize: 6, maxSize: 30});
+		  fitty("#notes-hit", {minSize: 6, maxSize: 35});
+		  fitty("#notes-missed", {minSize: 6, maxSize: 35});
+		  fitty("#perfects", {minSize: 6, maxSize: 35});
+          
+		  // Actually this is unnecessary but I will leave this change alone for the future
+		  tippy("#albumframe", {content: "클릭해서 이미지를 변경하세요. 사각형 이미지를 사용하세요.",});
+	  		const albumarttippy = tippy("#albumframe");
+		  tippy("#menubtn", {content: "메뉴",});
+		  	const menubtntippy = tippy("#menubtn");
+		  tippy("#aboutbtn", {content: "비프로스트 정보",});
+		  	const aboutbtntippy = tippy("#aboutbtn"); 
+		  tippy("#helpbtn", {content: "도움말",});
+		  	const helpbtntippy = tippy("#helpbtn"); 
+		  tippy("#download", {content: "이미지 다운로드",});
+		  	const dlimgtippy = tippy("#download");
+		  tippy("#gotostats", {content: "성적 페이지로",});
+		  	const statstippy = tippy("#gotostats");
+		  tippy("#gotomain", {content: "곡 정보 페이지로",});
+		  	const maintippy = tippy("#gotomain");
+		  tippy("#ragnarock-link-hp", {content: "공식 사이트",});
+		  	const hplinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#ragnarock-link-meta", {content: "Meta Store 페이지",});
+		  	const metalinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#ragnarock-link-steam", {content: "Steam 페이지",});
+		  	const steamlinktippy = tippy("#ragnarock-link-hp");
+		  tippy("#songname", {content: "두번 클릭하여 변경하세요!",});
+		  	const songnametippy = tippy("#songname");
+		  tippy("#artist", {content: "두번 클릭하여 변경하세요!",});
+		  	const artisttippy = tippy("#artist");
+		  tippy("#explicit", {content: "클릭하여 곡의 선정적임을 표시하세요!",});
+		  	const explicittippy = tippy("#explicit");
+		  tippy("#rune", {content: "클릭하여 이 맵의 제작자를 표시하세요!",});
+		  	const csntippy = tippy("#rune");
+		  
+		  tippy("#bronze-medal", {content: ["클릭하여 메달을 선택하세요! 메달을 모두 숨기려면 메뉴에서 등외를 선택하세요."],});
+		  	const bronzetippy = tippy("#bronze-medal");
+		  tippy("#silver-medal", {content: ["클릭하여 메달을 선택하세요! 메달을 모두 숨기려면 메뉴에서 등외를 선택하세요."],});
+		  	const silvertippy = tippy("#silver-medal");
+		  tippy("#gold-medal", {content: ["클릭하여 메달을 선택하세요! 메달을 모두 숨기려면 메뉴에서 등외를 선택하세요."],});
+		  	const goldtippy = tippy("#gold-medal");
+		  tippy("#lq", {content: ["느린 연결을 위한 저화질 배경을 설정/해제합니다."],});
+		  	const lqtippy = tippy("#lq");
+          tippy("#dist-text", {content: ["두번 클릭하여 변경하세요!"],});
+		  	const disttippy = tippy("#dist-text");
+		  
+		  //console.log(albumarttippy);
+		  
+		function updateDiff(){
+			var index = $("#difficultysel").val();
+			var colors = ["#FF0000","#3FD7C8","#18abf0","#124AFF","#8914FF","#BD2CF3","#ED22A2","#D0082D","#F03023","#E9711a","#FBB227","#FBB227"];
+            
+			$("#difficulty").addClass("toggle-off-alt");
+            $("#difficulty-ol").removeClass("toggle-off");
+            $("#difficulty-ol").text(index);
+            if (index > 10) {
+                index = 10; // Everything is fine
+            }
+			$("#difficulty-ol").css("color", colors[index]);
+		}  
+		
+		  // Section to invoke ClickToEdit
+		 $('#songname').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "-", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song name edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song name edited");
+						 if (data.content == "") {
+							 console.log("Song name set to nothing");
+							 $('#songname').text("Welcome to Asgard");
+						 }
+					 }
+				 }
+			 });
+		 $('#artist').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "-", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song name edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song name edited");
+						 if (data.content == "") {
+							 console.log("Song name set to nothing");
+							 $('#artist').text("Manaberry");
+						 }
+					 }
+				 }
+			 });
+		  $('#song-time').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "3:30", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Song time edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Song time edited");
+						 if (data.content == "") {
+							 console.log("Song time set to nothing");
+							 $('#song-time').text("3:30");
+						 }
+					 }
+				 }
+			 });
+		  $('#custom-author').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "Blackbeard", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("CSN edited");
+						 toggleCSName(true);
+					 }
+					 if (!data.content){ 
+						 console.log("CSN edited");
+						 if (data.content == "") {
+							 console.log("CSN set to nothing");
+							 $('#custom-author').text("Blackbeard");
+						 }
+					 }
+				 }
+			 });
+          $('#dist-text').editable(
+			 {
+				 closeOnEnter: true, 
+				 emptyMessage: "0.00m", 
+				 callback: function(data){ 
+					 if (data.content){ 
+						 console.log("Distance edited");
+					 }
+					 if (!data.content){ 
+						 console.log("Distance edited");
+						 if (data.content == "") {
+							 console.log("Distance set to nothing");
+							 $('#dist-text').text("0.00m");
+						 }
+					 }
+				 }
+			 });
+		function updateTime(){
+			var minutes = $("#minutes").val();
+			var seconds = $("#seconds").val();
+			// Ensure minutes value doesn't exceed 99 or enter NaN/null/inf
+			if (minutes > 99) {
+				minutes = 99;
+			}
+			else if (minutes < 0) {
+				minutes = 0;
+			}
+			else if ((Number.isNaN(minutes)) || minutes === "") {
+				console.warn("A non-number value was entered into Minutes!");
+				minutes = 0;
+			}
+			
+			// Ensure seconds value doesn't exceed 59 or enter NaN/null/inf
+			if (seconds > 59) {
+				seconds = 59;
+			}
+			else if (seconds < 0) {
+				seconds = 0;
+			}
+			else if ((Number.isNaN(seconds)) || seconds === "") {
+				console.warn("A non-number value was entered into Seconds!");
+				seconds = 0;
+			}
+			$("#song-time").text(minutes+":"+leftPad(seconds, 2));
+		}
+		  
+		function updateAuthor(){
+			var author = $("#customauthor").val();
+			// console.log(author.length)
+			if (author.length == 0) {
+				author = "TunakTunak"; // ;)
+			}
+			$("#custom-author").text(author);
+		}
+		  
+		  function updateSongInfo(){
+			  var songname = $("#songnametext").val();
+			  var artist = $("#artistinput").val();
+			  
+			  if (songname.length == 0){
+				  songname = "Extends Levant";
+			  }
+			  if (artist.length == 0){
+				  artist = "HertzDevil";
+			  }
+			  $("#songname").text(songname);
+			  $("#artist").text(artist);
+		  }
+		  
+		  $("#bronze-medal").click(function(event){
+			  updateMedals("bronzemedal");
+		  });
+		  $("#silver-medal").click(function(event){
+			  updateMedals("silvermedal");
+		  });
+		  $("#gold-medal").click(function(event){
+			  updateMedals("goldmedal");
+		  });
+		  
+		  
+		  function updateMedals(ext){
+			  // There is a way better way to do this but I can't make it work
+			  //var which = $(".medal-selector:checked").attr("id");
+			  var which = ext;
+			  var elemArray = [ $("#bronze-medal"), $("#silver-medal"), $("#gold-medal") ];
+			  // Ensure a known state
+			  	  elemArray[0].addClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+                  $("#dist-text").removeClass("text-bronze");
+                  $("#dist-text").removeClass("text-silver");
+                  $("#dist-text").removeClass("text-gold");
+			  // Now just add and remove class to our liking
+			  // This IS inefficient but it is easy
+			  if (which == "bronzemedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+                  $("#dist-text").addClass("text-bronze");
+                  $("#dist-text").removeClass("text-silver");
+                  $("#dist-text").removeClass("text-gold");
+			  }
+			  else if (which == "silvermedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+                  $("#dist-text").removeClass("text-bronze");
+                  $("#dist-text").addClass("text-silver");
+                  $("#dist-text").removeClass("text-gold");
+			  }
+			  else if (which == "goldmedal"){
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].removeClass("toggle-off-alt-1");
+                  $("#dist-text").removeClass("text-bronze");
+                  $("#dist-text").removeClass("text-silver");
+                  $("#dist-text").addClass("text-gold");
+			  }
+			  else if (which == "none"){
+				  elemArray[0].addClass("toggle-off-alt-1");
+				  elemArray[1].addClass("toggle-off-alt-1");
+				  elemArray[2].addClass("toggle-off-alt-1");
+                  $("#dist-text").removeClass("text-bronze");
+                  $("#dist-text").removeClass("text-silver");
+                  $("#dist-text").removeClass("text-gold");
+			  }
+			  else {
+				  console.error("Fatal error on updateMedals() - Uncaught condition");
+				  elemArray[0].removeClass("toggle-off-alt-1");
+				  elemArray[1].removeClass("toggle-off-alt-1");
+				  elemArray[2].removeClass("toggle-off-alt-1");
+                  $("#dist-text").removeClass("text-bronze");
+                  $("#dist-text").removeClass("text-silver");
+                  $("#dist-text").addClass("text-gold");
+			  }
+		  }
+		  
+		  // Attach click handler for Explicit icon
+		  $("#explicit").click(function(event){
+			  toggleExplicit();
+		  });
+		  
+		  // Likewise, attach click handler for Custom Map Author name
+		  $("#rune").click(function(event){
+			  toggleCSName();
+		  });
+		  
+		  var expState = true;
+		  var csnState = true;
+		  var mdlState = false;
+          var goldState = false;
+          var dragonState = true;
+		  var medalCount = 1;
+		  var lqmode = true;
+		  
+		  function toggleMedals(){
+			  // var state = $("#showmedals").is(":checked");
+			  if (mdlState == true){
+				  mdlState = false;
+				  $("#showmedals").prop("checked", false);
+				  $("#medals-container").removeClass("toggle-off-alt");
+			  }
+			  else if (mdlState == false){
+				  mdlState = true;
+				  $("#showmedals").prop("checked", true);
+				  $("#medals-container").addClass("toggle-off-alt");
+			  }
+		  }
+		  
+		  function toggleCSName(forceState){
+			  // var state = $("#customsong").is(":checked");
+			  if (forceState == true) {
+				  	if (csnState == false){
+					  csnState = true;
+					  $("#customsong").prop("checked", true);
+					  $("#custom-author-div").addClass("toggle-off-alt-1");
+			  } 
+			  }
+			  if (csnState == true){
+				  csnState = false;
+				  $("#customsong").prop("checked", false);
+				  $("#custom-author-div").removeClass("toggle-off-alt-1");
+			  }
+			  else if (csnState == false){
+				  csnState = true;
+				  $("#customsong").prop("checked", true);
+				  $("#custom-author-div").addClass("toggle-off-alt-1");
+			  }
+		  }
+		  
+		  function toggleLQ(){
+			  if (lqmode == true){
+				  $("#lq").prop("checked", false);
+				  lqmode = false;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+			  else if (lqmode == false){
+				  $("#lq").prop("checked", true);
+				  lqmode = true;
+				  console.log("LQ Mode: " + lqmode);
+			  }
+		  }
+		  
+		  function toggleExplicit() {
+			  if (expState == true){
+				  expState = false;
+				  $("#explicit-yn").prop("checked",false);
+				  $("#explicit").removeClass("toggle-off-alt-1");
+			  }
+			  else if (expState == false){
+				  expState = true;
+				  $("#explicit-yn").prop("checked",true);
+				  $("#explicit").addClass("toggle-off-alt-1");
+			  }
+		  }
+          
+          function makeItRain(){
+              // I give up, this works, I need to move on.
+              
+              // Ensure a correct, controlled state before we muck around
+              $('#distance-dragon').removeClass("hs");
+              $('#distance-block').removeClass("hs");
+              if (goldState == true){
+                  console.info("no gold");
+				  goldState = false;
+				  $("#gold").prop("checked",false);
+                  $("#distance-dragon").removeClass("hs");
+                  $("#distance-block").removeClass("hs"); 
+			  }
+			  else if (goldState == false){
+				  goldState = true;
+                  console.info("yes gold");
+				  $("#gold").prop("checked",true);
+				  $("#distance-dragon").addClass("hs");
+                  $("#distance-block").addClass("hs");
+			  }
+          }
+          
+          function showDragon(){
+              if (dragonState == true){
+				  $("#distance-dragon").addClass("toggle-off-alt");
+				  dragonState = false;
+			  }
+			  else if (dragonState == false){
+				  $("#distance-dragon").removeClass("toggle-off-alt");
+				  dragonState = true;
+			  }
+          }
+		  
+		  function updateBG(){
+			  // There is a way better way to do this but I can't make it work
+			  var which = $(".bgselector:checked").attr("id");
+			  if (lqmode == true) {
+				  which = which + "lb";
+			  }
+			  else {
+				which = which;  
+			  }
+			  if (which != "bgc"){
+				  $('body').css('background-image', "url('assets/"+which+".png')");
+			  }
+			  if (bg_custom == undefined && which == "bgc") {
+				  console.info("Custom Background - undefined hq");
+				  $('body').css('background-image', "url('assets/custom_bg_tmp.png')");
+			  }
+			  else if (bg_custom == undefined && which == "bgclb") {
+				  console.info("Custom Background - undefined lq");
+				  $('body').css('background-image', "url('assets/custom_bg_tmplb.png')");
+			  }
+			  else if (which == "bgc" || which == "bgclb") {
+				  console.info("Custom Background");
+				  $('body').css('background-image', "url("+bg_custom+")");
+			  }
+			  else if (which == "bg9" || which == "bg9lb") {
+				  $('body').css('background-image', "url('assets/green.png')");
+			  }
+		  }
+		  
+		  function updateStats(){
+			  var nhiti = $("#hits-input").val();
+			  var hitpi = $("#hitpercent-input").val();
+			  var missi = $("#misses-input").val();
+			  var mispi = $("#misspercent-input").val();
+			  var perfi = $("#perfects-input").val();
+			  var plati = $("#perfectpercent-input").val();
+			  var pcomi = $("#lc-input").val();
+			  var fcomi = $("#mc-input").val();
+			  
+			  var temp2 = Number(nhiti);
+			  var temp3 = Number(missi);
+			  var temp4 = Number(perfi);
+			  
+			  $("#notes-hit").text(numberWithCommas(temp2));
+			  $("#notes-hit-percent").text("("+hitpi+"%)");
+			  $("#notes-missed").text(numberWithCommas(temp3));
+			  $("#notes-missed-percent").text("("+mispi+"%)");
+			  $("#perfects").text(numberWithCommas(temp4));
+			  $("#perfects-latency").text(plati+"ms");
+			  $("#combo-total").text(Number(pcomi) + Number(fcomi));
+			  $("#partial-boost").text(pcomi);
+			  $("#full-boost").text(fcomi);
+		  }
+		  
+		  function goto(which) {
+			  if (which == 0) {
+				  // Main
+				  $("#stats-disp").addClass("toggle-off");
+				  $("#menu-stat").addClass("toggle-off");
+				  $("#gotomain").addClass("toggle-off");
+				  $("#mainmenu").removeClass("toggle-off");
+				  $("#menu-main").removeClass("toggle-off");
+				  $("#gotostats").removeClass("toggle-off");
+				  $("#plankton").removeClass("stats");
+			  }
+			  else if (which == 1) {
+				  // Stats
+				  $("#stats-disp").removeClass("toggle-off");
+				  $("#menu-stat").removeClass("toggle-off");
+				  $("#gotomain").removeClass("toggle-off");
+				  $("#mainmenu").addClass("toggle-off");
+				  $("#menu-main").addClass("toggle-off");
+				  $("#gotostats").addClass("toggle-off");
+				  $("#plankton").addClass("stats");
+			  }
+		  }
+		  
+		  var fileelem = document.querySelector("#albumart-uploader");
+		  var fsd = document.querySelector("#albumframe");
+		  fsd.addEventListener("click", (e) => {
+			  if (fileelem) {
+				  fileelem.click();
+			  }
+		  }, false);
+		  
+		  
+		  function handleFileSelect2() {               
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+          Swal.fire({title: '이런.',text: 'File API가 이 브라우저에서는 지원되지 않습니다.',icon: 'error',confirmButtonText: '네'});
+          return;
+        }   
+        var input = document.querySelector("#albumart-uploader");
+        if (!input) {
+		  Swal.fire({title: '이럴수가.',text: '해당 Element를 찾을 수 없습니다. 이것은 개발자의 잘못입니다.',icon: 'error',confirmButtonText: '알겠습니다'});
+        }
+        else if (!input.files) {
+			Swal.fire({title: '어이쿠.',text: "이 브라우저는 File 선택을 사용할 수 없습니다.",icon: 'error',confirmButtonText: '오케이'});
+        }
+        else if (!input.files[0]) {
+          Swal.fire({title: '흠.',text: '아무 파일도 선택되지 않았습니다.',icon: 'error',confirmButtonText: '알고 있습니다'});  
+		}
+        else {
+          var file = input.files[0];
+			//if (!file.type.startsWith("image/")){ continue };
+          var fr = new FileReader();
+			fr.readAsDataURL(file);
+          fr.onload = function(){ 
+			  console.log(fr.result);
+			  $('#albumimg').attr('src', fr.result);
+		  };
+			fr.onerror = function (error){
+				console.error("SPAGHET ERROR: ", error);
+			}
+        }
+      }
+		  
+		  function handleFileSelect() {               
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+          Swal.fire({title: '이런.',text: 'File API가 이 브라우저에서는 지원되지 않습니다.',icon: 'error',confirmButtonText: '네'});
+          return;
+        }   
+        var input = document.querySelector("#bgcustom");
+        if (!input) {
+		  Swal.fire({title: '이럴수가.',text: '해당 Element를 찾을 수 없습니다. 이것은 개발자의 잘못입니다.',icon: 'error',confirmButtonText: '알겠습니다'});
+        }
+        else if (!input.files) {
+			Swal.fire({title: '어이쿠.',text: "이 브라우저는 File 선택을 사용할 수 없습니다.",icon: 'error',confirmButtonText: '오케이'});
+        }
+        else if (!input.files[0]) {
+          Swal.fire({title: '흠.',text: '아무 파일도 선택되지 않았습니다.',icon: 'error',confirmButtonText: '알고 있습니다'});  
+		}
+        else {
+          var file = input.files[0];
+			//if (!file.type.startsWith("image/")){ continue };
+          var fr = new FileReader();
+			fr.readAsDataURL(file);
+          fr.onload = function(){ 
+			  console.log(fr.result);
+			  bg_custom = fr.result;
+			  $('body').css('background-image', "url("+fr.result+")");
+		  };
+			fr.onerror = function (error){
+				console.error("ITALIAN NOODLE ERROR: ", error);
+			}
+        }
+      }
+		  
+		  
+		function leftPad(value, length) {
+    		value = String(value);
+    		length = length - value.length;
+    		return ('0'.repeat(length) + value);
+		}
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		let state1 = 0;
+		let state2 = 0;
+		let state3 = 0;
+		
+		function showMenu(which){
+			let menu1 = $("#menu");
+			let menu2 = $("#about-overlay");
+			let menu3 = $("#help-overlay");
+			
+			// Only allow one menu to be open at any time
+			// Messy but works well
+			if (which == 0){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state1){
+					menu1.removeClass("toggle-off");
+					state1 = 1;
+					state2 = 0;
+					state3 = 0;
+				}
+				else if (state1){
+					menu1.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			if (which == 1){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state2){
+					menu2.removeClass("toggle-off");
+					state1 = 0;
+					state2 = 1;
+					state3 = 0;
+				}
+				else if (state2){
+					menu2.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			if (which == 2){
+				menu1.addClass("toggle-off");
+				menu2.addClass("toggle-off");
+				menu3.addClass("toggle-off");
+				if (!state3){
+					menu3.removeClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 1;
+				}
+				else if (state3){
+					menu3.addClass("toggle-off");
+					state1 = 0;
+					state2 = 0;
+					state3 = 0;
+				}
+			}
+			
+		}
+		  
+		  function printVersion(){
+			  return version;
+		  }
+		  
+	  	function downloadImg(){
+			let menubar = $("#bottombeard");
+			let menu1 = $("#menu");
+			let menu2 = $("#about-overlay");
+			let menu3 = $("#help-overlay");
+			var filename;
+			var songname = $("#songname").text();
+			var artistname = $("#artist").text();
+			// Close any menus if they're active
+			menu1.addClass("toggle-off");
+			menu2.addClass("toggle-off");
+			menu3.addClass("toggle-off");
+			// Temporarily hide the bottom menu
+			menubar.addClass("toggle-off-alt");
+			// Hide any tooltips if they're visible
+			tippy.hideAll();
+			$('.toggle-off-alt-1').addClass('toggle-off-alt').removeClass('toggle-off-alt-1');
+			if (songname.length == 0) {songname = "Untitled";}
+			if (artistname.length == 0) {artistname = "Various Artists";}	
+				filename = songname+" - "+artistname+" - Bifrost.png";
+			//document.documentElement.requestFullscreen();
+			html2canvas(document.body, { allowTaint: true, useCORS: true, width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080 }).then((canvas) => {
+				canvas.crossOrigin = 'Anonymous'; // Potential fix for CORS check failure, might not be needed
+				img = canvas.toDataURL("image/png"); 
+				downloadURI(img, filename);
+			})
+			// Now re-enable the menu bar
+			menubar.removeClass("toggle-off-alt");
+			$('.toggle-off-alt').addClass('toggle-off-alt-1').removeClass('toggle-off-alt');
+			Swal.fire({title: '혹시나 해서 말인데요,',text: '페이지가 깨지면 새로고침 해주세요.',icon: 'info',confirmButtonText: '넵'});
+		}
+		
+		function downloadURI(uri, name){
+			var link = document.createElement("a");
+			link.download = name;
+			link.href = uri;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			delete link;
+		}
+	  
+	  </script>
+	  <!--
+		TODO: 
+		Add support for higher difficulty levels than 10 (just the numbers are shown, colors unknown for now)
+		Add a new page for the stats (Distance, Runes Hit, Missed Runes, Perfect Hits, Combos Activated in this order)
+		Add "Next" and "Previous" button to switch between Song Info and Stats page
+		
+	  -->
+	  <script>
+		$("#body").imagesLoaded({ background: true },function(imgLoad) {
+		  $("#preloader").fadeOut('slow');
+			$("#bottombeard").removeClass("toggle-off");
+	  });
+		
+	  </script>
+  </body>
+</html>
