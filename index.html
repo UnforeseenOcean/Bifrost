@@ -1,216 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="utf-8">
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Primary Meta Tags -->
-	<title>BIFROST - Blackbeard</title>
-	<meta name="title" content="BIFROST - Blackbeard">
-	<meta name="description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+    <head>
+        <meta charset="utf-8">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Primary Meta Tags -->
+        <title>BIFROST - Blackbeard</title>
+        <meta name="title" content="BIFROST - Blackbeard">
+        <meta name="description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://unforeseenocean.github.io/Bifrost/">
+        <meta property="og:title" content="BIFROST - Blackbeard">
+        <meta property="og:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+        <meta property="og:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://unforeseenocean.github.io/Bifrost/">
+        <meta property="twitter:title" content="BIFROST - Blackbeard">
+        <meta property="twitter:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+        <meta property="twitter:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+        <!-- Bootstrap -->
+        <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: "Carter One";
+                src: url("assets/font/CarterOne-Regular.ttf");
+                font-display: block;
+            }
 
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://unforeseenocean.github.io/Bifrost/">
-	<meta property="og:title" content="BIFROST - Blackbeard">
-	<meta property="og:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
-	<meta property="og:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+            html,
+            body {
+                height: 100%;
+            }
 
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://unforeseenocean.github.io/Bifrost/">
-	<meta property="twitter:title" content="BIFROST - Blackbeard">
-	<meta property="twitter:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
-	<meta property="twitter:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+            body {
+                margin: 0;
+            }
 
-    <!-- Bootstrap -->
-    <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
-	  
-	<style>
-		@font-face {
-			font-family: "Carter One";
-			src: url("assets/font/CarterOne-Regular.ttf");
-			font-display: block;
-		}
-		html, body {
-    		height: 100%;
-		}
-		body {
-			margin: 0;
-		}
-		.flex-container {
-			height: 100%;
-			padding: 0;
-			margin: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.level1{color:#3FD7C8;}
-		.level2{color:#18abf0;}
-		.level3{color:#124AFF;}
-		.level4{color:#8914FF;}
-		.level5{color:#BD2CF3;}
-		.level6{color:#ED22A2;}
-		.level7{color:#D0082D;}
-		.level8{color:#F03023;}
-		.level9{color:#E9711a;}
-		.level10{color:#FBB227;}
-		body {
-			background-image: url("assets/debug_bglq.png");
-			overflow: hidden;
-			background-repeat: no-repeat; 
-   			background-color: #222842;
-   			background-position: center;
-			background-size: cover;
-		}
-		@keyframes spinner {
-			0% {
-				transform: rotate(0deg);
-				transform-origin: center center;
-			}
-			100% {
-				transform: rotate(359deg);
-				transform-origin: center center;
-			}
-		}
-		.white-text {
-			font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-			font-size: 1.6em;
-			color: white;
-		}
+            .flex-container {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-		.preloader-container {
-			  display: flex;
-			  flex-direction: column;
-			  align-items: center;
-			  justify-content: center;
-			  height: 100%;
-			  padding: 0;
-			  margin: 0;
-			background-color: rgb(58,58,58);
-		  }
-		  .ship-wharf {
-			  display: flex;
-			  flex-direction: column;
-			  min-width: 300px;
-			  min-height: 300px;
-			  max-width: 300px;
-			  max-height: 300px;
-			  clip-path: circle(42.5%);
-			  position: relative;
-		  }
-		  .drakkar {
-			  width: 128px;
-			  animation: wave 3s linear infinite;
-			  transform-origin: center center;
-		  }
-		  .wavefront {
-			  animation: wave 3s linear infinite reverse;
-			  transform-origin: center center;
-		  }
-		  .waveback {
-			  animation: wave 3s linear infinite reverse;
-			  animation-delay: 0.25s;
-			  transform-origin: center center;
-		  }
-		  .sail {
-			  position: absolute;
-			  width: 150px;
-			  animation: wave 3s linear infinite reverse;
-			  transform-origin: center center;
-			  left: 76px;
-			  top: 110px;
-		  }
-		  .wave-one {
-			  position: absolute;
-			  animation: wave 3s linear infinite;
-			  transform-origin: 45% center;
-			  min-width: 300px;
-			  min-height: 150px;
-			  left: 20px;
-			  top: 179px;
-		  }
-		  .wave-two {
-			  position: absolute;
-			  animation: wave 3s linear infinite;
-			  animation-delay: 0.25s;
-			  transform-origin: 45% center;
-			  min-width: 300px;
-			  min-height: 150px;
-			  left: 20px;
-			  top: 170px;
-		  }
-		  .dockhand {
-			  font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-			  color: white;
-			  font-size: 2em;
-			  line-height: 0.125em;
-		  }
-		  @keyframes wave {
-			  0% {
-				  transform: rotate(0deg);
-			  }
-			  100% {
-				  transform: rotate(359deg);
-			  }
-		  }
-        
-        .ragnabtn {
-            font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-            background-color: #373737;
-            color: white;
-            font-size: 2.5em;
-            transition: 0.5s all;
-        }
-        
-        .ragnabtn:hover {
-            background-color: #5D5D5D;
-            transform: scale(1.1);
-        }
-	  </style>
-  </head>
-  <body id="body">
-	  <div class="preloader-container" id="preloader" data-html2canvas-ignore>
-		<div class="ship-wharf">
-			<div class="sail ord-second">
-				<img class="drakkar" src="assets/waverider_drakkar.svg" alt="How come did the preloader break?!">
-			</div>
-			<div class="wave-one ord-first">
-				<img class="wavefront" src="assets/waverider_wave1.svg" alt="Noooooooooo!">
-			</div>
-			<div class="wave-two ord-third">
-					<img class="waveback" src="assets/waverider_wave2.svg" alt="How come?!">
-			</div>
-		</div> 
-		<div class="dockhand">
-			<p>Which version do you want to use?</p>
-            
-		</div>
-          <div class="buttons">
-          <button class="ragnabtn" onclick="goto(0)">VR Edition</button>
-            <button class="ragnabtn" onclick="goto(1)">Non-VR Edition</button>
-			 <button class="ragnabtn" onclick="goto(2)">Non-VR 한국어</button>
-          </div>
-	</div>
-      <script>
-      function goto(which){
-          if (which == 0) {
-              document.location = "./v1/index.html";
-          }
-          if (which == 1) {
-              document.location = "./v2/index.html";
-          }
-		  if (which == 2) {
-              document.location = "./v2-kor/index.html";
-          }
-      }
-      
-      
-      </script>
-  </body>
+            .level1 {
+                color: #3FD7C8;
+            }
+
+            .level2 {
+                color: #18abf0;
+            }
+
+            .level3 {
+                color: #124AFF;
+            }
+
+            .level4 {
+                color: #8914FF;
+            }
+
+            .level5 {
+                color: #BD2CF3;
+            }
+
+            .level6 {
+                color: #ED22A2;
+            }
+
+            .level7 {
+                color: #D0082D;
+            }
+
+            .level8 {
+                color: #F03023;
+            }
+
+            .level9 {
+                color: #E9711a;
+            }
+
+            .level10 {
+                color: #FBB227;
+            }
+
+            body {
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-color: #222842;
+                background-position: center;
+                background-size: cover;
+            }
+
+            @keyframes spinner {
+                0% {
+                    transform: rotate(0deg);
+                    transform-origin: center center;
+                }
+
+                100% {
+                    transform: rotate(359deg);
+                    transform-origin: center center;
+                }
+            }
+
+            .white-text {
+                font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+                font-size: 1.6em;
+                color: white;
+            }
+
+            .preloader-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                background-color: rgb(58, 58, 58);
+            }
+
+            .ship-wharf {
+                display: flex;
+                flex-direction: column;
+                min-width: 300px;
+                min-height: 300px;
+                max-width: 300px;
+                max-height: 300px;
+                clip-path: circle(42.5%);
+                position: relative;
+            }
+
+            .drakkar {
+                width: 128px;
+                animation: wave 3s linear infinite;
+                transform-origin: center center;
+            }
+
+            .wavefront {
+                animation: wave 3s linear infinite reverse;
+                transform-origin: center center;
+            }
+
+            .waveback {
+                animation: wave 3s linear infinite reverse;
+                animation-delay: 0.25s;
+                transform-origin: center center;
+            }
+
+            .sail {
+                position: absolute;
+                width: 150px;
+                animation: wave 3s linear infinite reverse;
+                transform-origin: center center;
+                left: 76px;
+                top: 110px;
+            }
+
+            .wave-one {
+                position: absolute;
+                animation: wave 3s linear infinite;
+                transform-origin: 45% center;
+                min-width: 300px;
+                min-height: 150px;
+                left: 20px;
+                top: 179px;
+            }
+
+            .wave-two {
+                position: absolute;
+                animation: wave 3s linear infinite;
+                animation-delay: 0.25s;
+                transform-origin: 45% center;
+                min-width: 300px;
+                min-height: 150px;
+                left: 20px;
+                top: 170px;
+            }
+
+            .dockhand {
+                font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+                color: white;
+                font-size: 2em;
+                line-height: 0.125em;
+            }
+
+            @keyframes wave {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(359deg);
+                }
+            }
+
+            .ragnabtn {
+                font-family: "Carter One", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+                background-color: #373737;
+                color: white;
+                font-size: 2.5em;
+                transition: 0.5s all;
+            }
+
+            .ragnabtn:hover {
+                background-color: #5D5D5D;
+                transform: scale(1.1);
+            }
+        </style>
+    </head>
+    <body id="body">
+        <div class="preloader-container" id="preloader" data-html2canvas-ignore>
+            <div class="ship-wharf">
+                <div class="sail ord-second">
+                    <img class="drakkar" src="assets/waverider_drakkar.svg" alt="How come did the preloader break?!">
+                </div>
+                <div class="wave-one ord-first">
+                    <img class="wavefront" src="assets/waverider_wave1.svg" alt="Noooooooooo!">
+                </div>
+                <div class="wave-two ord-third">
+                    <img class="waveback" src="assets/waverider_wave2.svg" alt="How come?!">
+                </div>
+            </div>
+            <div class="dockhand">
+                <p>Which version do you want to use?</p>
+            </div>
+            <div class="buttons">
+                <button class="ragnabtn" onclick="goto(0)">VR Edition</button>
+                <button class="ragnabtn" onclick="goto(1)">Non-VR Edition</button>
+                <button class="ragnabtn" onclick="goto(2)">Non-VR 한국어</button>
+            </div>
+        </div>
+        <script>
+            function goto(which) {
+                if (which == 0) {
+                    document.location = "./v1/index.html";
+                }
+                if (which == 1) {
+                    document.location = "./v2/index.html";
+                }
+                if (which == 2) {
+                    document.location = "./v2-kor/index.html";
+                }
+            }
+        </script>
+    </body>
 </html>

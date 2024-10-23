@@ -1,5 +1,7 @@
 # Bifrost
 
+# This tool has reached its End of Life status. You can still use it, but no more updates or support will be provided.
+
 This version is for independent use of the program away from online CDN, and is intended to be downloaded into user's disk. Please clone or download this repository to use it!
 
 ![Logo](https://github.com/UnforeseenOcean/Bifrost/raw/main/rm-imgs/logo.png "Bifrost Logo")
