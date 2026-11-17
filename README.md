@@ -18,6 +18,7 @@ Bifrost supports all image formats supported by the game.
 - NEW: Click-to-edit function enables even easier editing for the main graphics
 - Easy download with automatic naming
   - A feature to name it with "song-info" and "stats" at the end separately is in the progress.
+- NEW (v3.0): You can drop a zipped folder of the map (singular) and auto-populate the info page
 - Well, that's pretty much it!
 
 # Demonstration
@@ -30,7 +31,8 @@ The following two images show the output of the tool, which would be useful to b
 
 # Limitations
 - Since this is an online tool (though no data is saved or transmitted to online servers) you are required to have an internet connection.
-  - This, however, can be rectified by downloading the site and accessing `bifrost` folder directly.
+  - This, however, can be rectified by downloading the tool and using local HTTP server software. (Search "Simple HTTP Server")
+- You cannot drag and drop a map folder yet. You need to zip it up, then drag and drop it onto the tool.
 - A leaderboard position info screen was in the works, but it has been scrapped due to the complexity involved in editing the entries automatically or manually.
 
 # Acknowledgement and Credits

@@ -1,0 +1,1 @@
+Icons and assets from Font Awesome (logos) and Google Material Icons (icons)

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Primary Meta Tags -->
+    <title>BIFROST has reached EOL - Blackbeard</title>
+    <meta name="title" content="BIFROST - Blackbeard">
+    <meta name="description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unforeseenocean.github.io/Bifrost/">
+    <meta property="og:title" content="BIFROST - Blackbeard">
+    <meta property="og:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+    <meta property="og:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://unforeseenocean.github.io/Bifrost/">
+    <meta property="twitter:title" content="BIFROST - Blackbeard">
+    <meta property="twitter:description" content="A simple video thumbnail generator for Ragnarock, by Blackbeard. ">
+    <meta property="twitter:image" content="https://unforeseenocean.github.io/Bifrost/assets/social_preview.png">
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap-4.4.1.css" rel="stylesheet">
+
+    <style>
+
+    </style>
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+</head>
+
+<body id="body">
+
+
+    <script>
+        //This spaghetti web app developed in few days by Blackbeard
+        
+
+        
+        // Calling customRadio function
+        
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper2.min.js"></script>
+    <!--<script src="js/bootstrap-4.4.1.js"></script>-->
+    <script src="js/jquery.editable.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/tippy-bundle.umd.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
+    <script src="js/fitty.min.js"></script>
+
+    <script>
+        var bg_custom;
+        var album_img;
+        var version = "2.0.0 (Heimdall) RC1";
+        fitty("#songname", {
+            minSize: 16,
+            maxSize: 35
+        });
+        fitty("#artist", {
+            minSize: 12,
+            maxSize: 30
+        });
+        fitty("#dist-text", {
+            minSize: 6,
+            maxSize: 30
+        });
+        fitty("#notes-hit", {
+            minSize: 6,
+            maxSize: 35
+        });
+        fitty("#notes-missed", {
+            minSize: 6,
+            maxSize: 35
+        });
+        fitty("#perfects", {
+            minSize: 6,
+            maxSize: 35
+        });
+
+        // Actually this is unnecessary but I will leave this change alone for the future
+        tippy("#albumframe", {
+            content: "Click to change! Square image please.",
+        });
+        const albumarttippy = tippy("#albumframe");
+        tippy("#menubtn", {
+            content: "Fallback Menu",
+        });
+        const menubtntippy = tippy("#menubtn");
+        tippy("#aboutbtn", {
+            content: "About Bifrost",
+        });
+        const aboutbtntippy = tippy("#aboutbtn");
+        tippy("#helpbtn", {
+            content: "Help!",
+        });
+        const helpbtntippy = tippy("#helpbtn");
+        tippy("#download", {
+            content: "Download Image",
+        });
+        const dlimgtippy = tippy("#download");
+        tippy("#gotostats", {
+            content: "Go to Stats page",
+        });
+        const statstippy = tippy("#gotostats");
+        tippy("#gotomain", {
+            content: "Go to Song Info page",
+        });
+        const maintippy = tippy("#gotomain");
+        tippy("#ragnarock-link-hp", {
+            content: "Official Site",
+        });
+        const hplinktippy = tippy("#ragnarock-link-hp");
+        tippy("#ragnarock-link-meta", {
+            content: "Meta Store Page",
+        });
+        const metalinktippy = tippy("#ragnarock-link-meta");
+        tippy("#ragnarock-link-steam", {
+            content: "Steam Store Page",
+        });
+        const steamlinktippy = tippy("#ragnarock-link-steam");
+        tippy("#songname", {
+            content: "Double-click to edit!",
+        });
+        const songnametippy = tippy("#songname");
+        tippy("#artist", {
+            content: "Double-click to edit!",
+        });
+        const artisttippy = tippy("#artist");
+        tippy("#explicit", {
+            content: "Click to toggle Explicit status!",
+        });
+        const explicittippy = tippy("#explicit");
+        tippy("#rune", {
+            content: "Click to toggle Custom Map Author name!",
+        });
+        const csntippy = tippy("#rune");
+
+        tippy("#bronze-medal", {
+            content: ["Click to set medal! To hide all medals, use Unranked option in menu."],
+        });
+        const bronzetippy = tippy("#bronze-medal");
+        tippy("#silver-medal", {
+            content: ["Click to set medal! To hide all medals, use Unranked option in menu."],
+        });
+        const silvertippy = tippy("#silver-medal");
+        tippy("#gold-medal", {
+            content: ["Click to set medal! To hide all medals, use Unranked option in menu."],
+        });
+        const goldtippy = tippy("#gold-medal");
+        tippy("#lq", {
+            content: ["Enable/disable low bandwidth background for slower connections."],
+        });
+        const lqtippy = tippy("#lq");
+        tippy("#dist-text", {
+            content: ["Double-click me to edit!"],
+        });
+        const disttippy = tippy("#dist-text");
+
+        //console.log(albumarttippy);
+
+        function updateDiff() {
+            var index = $("#difficultysel").val();
+            var colors = ["#FF0000", "#3FD7C8", "#18abf0", "#124AFF", "#8914FF", "#BD2CF3", "#ED22A2", "#D0082D", "#F03023", "#E9711a", "#FBB227", "#FBB227"];
+
+            $("#difficulty").addClass("toggle-off-alt");
+            $("#difficulty-ol").removeClass("toggle-off");
+            $("#difficulty-ol").text(index);
+            if (index > 10) {
+                index = 10; // Everything is fine
+            }
+            $("#difficulty-ol").css("color", colors[index]);
+        }
+
+        // Section to invoke ClickToEdit
+        $('#songname').editable({
+            closeOnEnter: true,
+            emptyMessage: "-",
+            callback: function(data) {
+                if (data.content) {
+                    console.log("Song name edited");
+                }
+                if (!data.content) {
+                    console.log("Song name edited");
+                    if (data.content == "") {
+                        console.log("Song name set to nothing");
+                        $('#songname').text("Welcome to Asgard");
+                    }
+                }
+            }
+        });
+        $('#artist').editable({
+            closeOnEnter: true,
+            emptyMessage: "-",
+            callback: function(data) {
+                if (data.content) {
+                    console.log("Song name edited");
+                }
+                if (!data.content) {
+                    console.log("Song name edited");
+                    if (data.content == "") {
+                        console.log("Song name set to nothing");
+                        $('#artist').text("Manaberry");
+                    }
+                }
+            }
+        });
+        $('#song-time').editable({
+            closeOnEnter: true,
+            emptyMessage: "3:30",
+            callback: function(data) {
+                if (data.content) {
+                    console.log("Song time edited");
+                }
+                if (!data.content) {
+                    console.log("Song time edited");
+                    if (data.content == "") {
+                        console.log("Song time set to nothing");
+                        $('#song-time').text("3:30");
+                    }
+                }
+            }
+        });
+        $('#custom-author').editable({
+            closeOnEnter: true,
+            emptyMessage: "Blackbeard",
+            callback: function(data) {
+                if (data.content) {
+                    console.log("CSN edited");
+                    toggleCSName(true);
+                }
+                if (!data.content) {
+                    console.log("CSN edited");
+                    if (data.content == "") {
+                        console.log("CSN set to nothing");
+                        $('#custom-author').text("Blackbeard");
+                    }
+                }
+            }
+        });
+        $('#dist-text').editable({
+            closeOnEnter: true,
+            emptyMessage: "0.00m",
+            callback: function(data) {
+                if (data.content) {
+                    console.log("Distance edited");
+                }
+                if (!data.content) {
+                    console.log("Distance edited");
+                    if (data.content == "") {
+                        console.log("Distance set to nothing");
+                        $('#dist-text').text("0.00m");
+                    }
+                }
+            }
+        });
+
+        function updateTime() {
+            var minutes = $("#minutes").val();
+            var seconds = $("#seconds").val();
+            // Ensure minutes value doesn't exceed 99 or enter NaN/null/inf
+            if (minutes > 99) {
+                minutes = 99;
+            } else if (minutes < 0) {
+                minutes = 0;
+            } else if ((Number.isNaN(minutes)) || minutes === "") {
+                console.warn("A non-number value was entered into Minutes!");
+                minutes = 0;
+            }
+
+            // Ensure seconds value doesn't exceed 59 or enter NaN/null/inf
+            if (seconds > 59) {
+                seconds = 59;
+            } else if (seconds < 0) {
+                seconds = 0;
+            } else if ((Number.isNaN(seconds)) || seconds === "") {
+                console.warn("A non-number value was entered into Seconds!");
+                seconds = 0;
+            }
+            $("#song-time").text(minutes + ":" + leftPad(seconds, 2));
+        }
+
+        function updateAuthor() {
+            var author = $("#customauthor").val();
+            // console.log(author.length)
+            if (author.length == 0) {
+                author = "TunakTunak"; // ;)
+            }
+            $("#custom-author").text(author);
+        }
+
+        function updateSongInfo() {
+            var songname = $("#songnametext").val();
+            var artist = $("#artistinput").val();
+
+            if (songname.length == 0) {
+                songname = "Extends Levant";
+            }
+            if (artist.length == 0) {
+                artist = "HertzDevil";
+            }
+            $("#songname").text(songname);
+            $("#artist").text(artist);
+        }
+
+        $("#bronze-medal").click(function(event) {
+            updateMedals("bronzemedal");
+        });
+        $("#silver-medal").click(function(event) {
+            updateMedals("silvermedal");
+        });
+        $("#gold-medal").click(function(event) {
+            updateMedals("goldmedal");
+        });
+
+
+        function updateMedals(ext) {
+            // There is a way better way to do this but I can't make it work
+            //var which = $(".medal-selector:checked").attr("id");
+            var which = ext;
+            var elemArray = [$("#bronze-medal"), $("#silver-medal"), $("#gold-medal")];
+            // Ensure a known state
+            elemArray[0].addClass("toggle-off-alt-1");
+            elemArray[1].addClass("toggle-off-alt-1");
+            elemArray[2].addClass("toggle-off-alt-1");
+            $("#dist-text").removeClass("text-bronze");
+            $("#dist-text").removeClass("text-silver");
+            $("#dist-text").removeClass("text-gold");
+            // Now just add and remove class to our liking
+            // This IS inefficient but it is easy
+            if (which == "bronzemedal") {
+                elemArray[0].removeClass("toggle-off-alt-1");
+                elemArray[1].addClass("toggle-off-alt-1");
+                elemArray[2].addClass("toggle-off-alt-1");
+                $("#dist-text").addClass("text-bronze");
+                $("#dist-text").removeClass("text-silver");
+                $("#dist-text").removeClass("text-gold");
+            } else if (which == "silvermedal") {
+                elemArray[0].removeClass("toggle-off-alt-1");
+                elemArray[1].removeClass("toggle-off-alt-1");
+                elemArray[2].addClass("toggle-off-alt-1");
+                $("#dist-text").removeClass("text-bronze");
+                $("#dist-text").addClass("text-silver");
+                $("#dist-text").removeClass("text-gold");
+            } else if (which == "goldmedal") {
+                elemArray[0].removeClass("toggle-off-alt-1");
+                elemArray[1].removeClass("toggle-off-alt-1");
+                elemArray[2].removeClass("toggle-off-alt-1");
+                $("#dist-text").removeClass("text-bronze");
+                $("#dist-text").removeClass("text-silver");
+                $("#dist-text").addClass("text-gold");
+            } else if (which == "none") {
+                elemArray[0].addClass("toggle-off-alt-1");
+                elemArray[1].addClass("toggle-off-alt-1");
+                elemArray[2].addClass("toggle-off-alt-1");
+                $("#dist-text").removeClass("text-bronze");
+                $("#dist-text").removeClass("text-silver");
+                $("#dist-text").removeClass("text-gold");
+            } else {
+                console.error("Fatal error on updateMedals() - Uncaught condition");
+                elemArray[0].removeClass("toggle-off-alt-1");
+                elemArray[1].removeClass("toggle-off-alt-1");
+                elemArray[2].removeClass("toggle-off-alt-1");
+                $("#dist-text").removeClass("text-bronze");
+                $("#dist-text").removeClass("text-silver");
+                $("#dist-text").addClass("text-gold");
+            }
+        }
+
+        // Attach click handler for Explicit icon
+        $("#explicit").click(function(event) {
+            toggleExplicit();
+        });
+
+        // Likewise, attach click handler for Custom Map Author name
+        $("#rune").click(function(event) {
+            toggleCSName();
+        });
+
+        var expState = true;
+        var csnState = true;
+        var mdlState = false;
+        var goldState = false;
+        var dragonState = true;
+        var medalCount = 1;
+        var lqmode = true;
+
+        function toggleMedals() {
+            // var state = $("#showmedals").is(":checked");
+            if (mdlState == true) {
+                mdlState = false;
+                $("#showmedals").prop("checked", false);
+                $("#medals-container").removeClass("toggle-off-alt");
+            } else if (mdlState == false) {
+                mdlState = true;
+                $("#showmedals").prop("checked", true);
+                $("#medals-container").addClass("toggle-off-alt");
+            }
+        }
+
+        function toggleCSName(forceState) {
+            // var state = $("#customsong").is(":checked");
+            if (forceState == true) {
+                if (csnState == false) {
+                    csnState = true;
+                    $("#customsong").prop("checked", true);
+                    $("#custom-author-div").addClass("toggle-off-alt-1");
+                }
+            }
+            if (csnState == true) {
+                csnState = false;
+                $("#customsong").prop("checked", false);
+                $("#custom-author-div").removeClass("toggle-off-alt-1");
+            } else if (csnState == false) {
+                csnState = true;
+                $("#customsong").prop("checked", true);
+                $("#custom-author-div").addClass("toggle-off-alt-1");
+            }
+        }
+
+        function toggleLQ() {
+            if (lqmode == true) {
+                $("#lq").prop("checked", false);
+                lqmode = false;
+                console.log("LQ Mode: " + lqmode);
+            } else if (lqmode == false) {
+                $("#lq").prop("checked", true);
+                lqmode = true;
+                console.log("LQ Mode: " + lqmode);
+            }
+        }
+
+        function toggleExplicit() {
+            if (expState == true) {
+                expState = false;
+                $("#explicit-yn").prop("checked", false);
+                $("#explicit").removeClass("toggle-off-alt-1");
+            } else if (expState == false) {
+                expState = true;
+                $("#explicit-yn").prop("checked", true);
+                $("#explicit").addClass("toggle-off-alt-1");
+            }
+        }
+
+        function makeItRain() {
+            // I give up, this works, I need to move on.
+
+            // Ensure a correct, controlled state before we muck around
+            $('#distance-dragon').removeClass("hs");
+            $('#distance-block').removeClass("hs");
+            if (goldState == true) {
+                console.info("no gold");
+                goldState = false;
+                $("#gold").prop("checked", false);
+                $("#distance-dragon").removeClass("hs");
+                $("#distance-block").removeClass("hs");
+            } else if (goldState == false) {
+                goldState = true;
+                console.info("yes gold");
+                $("#gold").prop("checked", true);
+                $("#distance-dragon").addClass("hs");
+                $("#distance-block").addClass("hs");
+            }
+        }
+
+        function showDragon() {
+            if (dragonState == true) {
+                $("#distance-dragon").addClass("toggle-off-alt");
+                dragonState = false;
+            } else if (dragonState == false) {
+                $("#distance-dragon").removeClass("toggle-off-alt");
+                dragonState = true;
+            }
+        }
+
+        function updateBG() {
+            // There is a way better way to do this but I can't make it work
+            var which = $(".bgselector:checked").attr("id");
+            if (lqmode == true) {
+                which = which + "lb";
+            } else {
+                which = which;
+            }
+            if (which != "bgc") {
+                $('body').css('background-image', "url('assets/" + which + ".png')");
+            }
+            if (bg_custom == undefined && which == "bgc") {
+                console.info("Custom Background - undefined hq");
+                $('body').css('background-image', "url('assets/custom_bg_tmp.png')");
+            } else if (bg_custom == undefined && which == "bgclb") {
+                console.info("Custom Background - undefined lq");
+                $('body').css('background-image', "url('assets/custom_bg_tmplb.png')");
+            } else if (which == "bgc" || which == "bgclb") {
+                console.info("Custom Background");
+                $('body').css('background-image', "url(" + bg_custom + ")");
+            } else if (which == "bg9" || which == "bg9lb") {
+                $('body').css('background-image', "url('assets/green.png')");
+            }
+        }
+
+        function updateStats() {
+            var nhiti = $("#hits-input").val();
+            var hitpi = $("#hitpercent-input").val();
+            var missi = $("#misses-input").val();
+            var mispi = $("#misspercent-input").val();
+            var perfi = $("#perfects-input").val();
+            var plati = $("#perfectpercent-input").val();
+            var pcomi = $("#lc-input").val();
+            var fcomi = $("#mc-input").val();
+
+            var temp2 = Number(nhiti);
+            var temp3 = Number(missi);
+            var temp4 = Number(perfi);
+
+            $("#notes-hit").text(numberWithCommas(temp2));
+            $("#notes-hit-percent").text("(" + hitpi + "%)");
+            $("#notes-missed").text(numberWithCommas(temp3));
+            $("#notes-missed-percent").text("(" + mispi + "%)");
+            $("#perfects").text(numberWithCommas(temp4));
+            $("#perfects-latency").text(plati + "ms");
+            $("#combo-total").text(Number(pcomi) + Number(fcomi));
+            $("#partial-boost").text(pcomi);
+            $("#full-boost").text(fcomi);
+        }
+
+        function goto(which) {
+            if (which == 0) {
+                // Main
+                $("#stats-disp").addClass("toggle-off");
+                $("#menu-stat").addClass("toggle-off");
+                $("#gotomain").addClass("toggle-off");
+                $("#mainmenu").removeClass("toggle-off");
+                $("#menu-main").removeClass("toggle-off");
+                $("#gotostats").removeClass("toggle-off");
+                $("#plankton").removeClass("stats");
+            } else if (which == 1) {
+                // Stats
+                $("#stats-disp").removeClass("toggle-off");
+                $("#menu-stat").removeClass("toggle-off");
+                $("#gotomain").removeClass("toggle-off");
+                $("#mainmenu").addClass("toggle-off");
+                $("#menu-main").addClass("toggle-off");
+                $("#gotostats").addClass("toggle-off");
+                $("#plankton").addClass("stats");
+            }
+        }
+
+        var fileelem = document.querySelector("#albumart-uploader");
+        var fsd = document.querySelector("#albumframe");
+        fsd.addEventListener("click", (e) => {
+            if (fileelem) {
+                fileelem.click();
+            }
+        }, false);
+
+
+        function handleFileSelect2() {
+            if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+                Swal.fire({
+                    title: 'Uh-oh.',
+                    text: 'File APIs are not fully supported on this browser.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+                return;
+            }
+            var input = document.querySelector("#albumart-uploader");
+            if (!input) {
+                Swal.fire({
+                    title: 'Yikes.',
+                    text: 'Could not find target Element. This is not your fault.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else if (!input.files) {
+                Swal.fire({
+                    title: 'Oops.',
+                    text: "This browser doesn't seem to support the `files` property of file inputs.",
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else if (!input.files[0]) {
+                Swal.fire({
+                    title: 'Well...',
+                    text: 'No file selected.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else {
+                var file = input.files[0];
+                //if (!file.type.startsWith("image/")){ continue };
+                var fr = new FileReader();
+                fr.readAsDataURL(file);
+                fr.onload = function() {
+                    console.log(fr.result);
+                    $('#albumimg').attr('src', fr.result);
+                };
+                fr.onerror = function(error) {
+                    console.error("SPAGHET ERROR: ", error);
+                }
+            }
+        }
+
+        function handleFileSelect() {
+            if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+                Swal.fire({
+                    title: 'Uh-oh.',
+                    text: 'File APIs are not fully supported on this browser.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+                return;
+            }
+            var input = document.querySelector("#bgcustom");
+            if (!input) {
+                Swal.fire({
+                    title: 'Yikes.',
+                    text: 'Could not find target Element. This is not your fault.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else if (!input.files) {
+                Swal.fire({
+                    title: 'Oops.',
+                    text: "This browser doesn't seem to support the `files` property of file inputs.",
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else if (!input.files[0]) {
+                Swal.fire({
+                    title: 'Well...',
+                    text: 'No file selected.',
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
+            } else {
+                var file = input.files[0];
+                //if (!file.type.startsWith("image/")){ continue };
+                var fr = new FileReader();
+                fr.readAsDataURL(file);
+                fr.onload = function() {
+                    console.log(fr.result);
+                    bg_custom = fr.result;
+                    $('body').css('background-image', "url(" + fr.result + ")");
+                };
+                fr.onerror = function(error) {
+                    console.error("ITALIAN NOODLE ERROR: ", error);
+                }
+            }
+        }
+
+
+        function leftPad(value, length) {
+            value = String(value);
+            length = length - value.length;
+            return ('0'.repeat(length) + value);
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        let state1 = 0;
+        let state2 = 0;
+        let state3 = 0;
+
+        function showMenu(which) {
+            let menu1 = $("#menu");
+            let menu2 = $("#about-overlay");
+            let menu3 = $("#help-overlay");
+
+            // Only allow one menu to be open at any time
+            // Messy but works well
+            if (which == 0) {
+                menu1.addClass("toggle-off");
+                menu2.addClass("toggle-off");
+                menu3.addClass("toggle-off");
+                if (!state1) {
+                    menu1.removeClass("toggle-off");
+                    state1 = 1;
+                    state2 = 0;
+                    state3 = 0;
+                } else if (state1) {
+                    menu1.addClass("toggle-off");
+                    state1 = 0;
+                    state2 = 0;
+                    state3 = 0;
+                }
+            }
+            if (which == 1) {
+                menu1.addClass("toggle-off");
+                menu2.addClass("toggle-off");
+                menu3.addClass("toggle-off");
+                if (!state2) {
+                    menu2.removeClass("toggle-off");
+                    state1 = 0;
+                    state2 = 1;
+                    state3 = 0;
+                } else if (state2) {
+                    menu2.addClass("toggle-off");
+                    state1 = 0;
+                    state2 = 0;
+                    state3 = 0;
+                }
+            }
+            if (which == 2) {
+                menu1.addClass("toggle-off");
+                menu2.addClass("toggle-off");
+                menu3.addClass("toggle-off");
+                if (!state3) {
+                    menu3.removeClass("toggle-off");
+                    state1 = 0;
+                    state2 = 0;
+                    state3 = 1;
+                } else if (state3) {
+                    menu3.addClass("toggle-off");
+                    state1 = 0;
+                    state2 = 0;
+                    state3 = 0;
+                }
+            }
+
+        }
+
+        function printVersion() {
+            return version;
+        }
+
+        function downloadImg() {
+            let menubar = $("#bottombeard");
+            let menu1 = $("#menu");
+            let menu2 = $("#about-overlay");
+            let menu3 = $("#help-overlay");
+            var filename;
+            var songname = $("#songname").text();
+            var artistname = $("#artist").text();
+            // Close any menus if they're active
+            menu1.addClass("toggle-off");
+            menu2.addClass("toggle-off");
+            menu3.addClass("toggle-off");
+            // Temporarily hide the bottom menu
+            menubar.addClass("toggle-off-alt");
+            // Hide any tooltips if they're visible
+            tippy.hideAll();
+            $('.toggle-off-alt-1').addClass('toggle-off-alt').removeClass('toggle-off-alt-1');
+            if (songname.length == 0) {
+                songname = "Untitled";
+            }
+            if (artistname.length == 0) {
+                artistname = "Various Artists";
+            }
+            filename = songname + " - " + artistname + " - Bifrost.png";
+            //document.documentElement.requestFullscreen();
+            html2canvas(document.body, {
+                allowTaint: true,
+                useCORS: true,
+                width: 1920,
+                height: 1080,
+                windowWidth: 1920,
+                windowHeight: 1080
+            }).then((canvas) => {
+                canvas.crossOrigin = 'Anonymous'; // Potential fix for CORS check failure, might not be needed
+                img = canvas.toDataURL("image/png");
+                downloadURI(img, filename);
+            })
+            // Now re-enable the menu bar
+            menubar.removeClass("toggle-off-alt");
+            $('.toggle-off-alt').addClass('toggle-off-alt-1').removeClass('toggle-off-alt');
+            Swal.fire({
+                title: 'Just so you know',
+                text: 'If the page breaks, please refresh the page.',
+                icon: 'info',
+                confirmButtonText: 'Ahou'
+            });
+        }
+
+        function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+        var userData = {
+            cookieAccepted: false
+        }
+
+        function closeDialog(accepted) {
+            console.warn("RagnaChooser 1 and 2, as well as Bifrost V1 and V2 has reached end of life.");
+            if (!accepted) {
+                $("#eolnotice").hide();
+            } else {
+                setLocalStorage("cookie", true);
+                $("#eolnotice").hide();
+            }
+        }
+
+        function getLocalStorage() {
+            console.log("Trying to get LocalStorage.");
+            // getLocalStorage must be executed when the DOM is fully loaded
+            if (localStorage.getItem("cookieAccepted") !== null) {
+                userData.cookieAccepted = JSON.parse(localStorage.getItem("cookieAccepted"));
+            }
+        }
+
+        function setLocalStorage(type, data) {
+            console.info("Got call to write value " + data + " to " + type);
+            switch (type) {
+                case "cookie":
+                    localStorage.setItem("cookieAccepted", JSON.stringify(data));
+                    break;
+                default:
+                    console.error("You can't invoke setLocalStorage with null as type.");
+                    break;
+            }
+        }
+        window.onload = function() {
+            initPage();
+        }
+
+        function initPage() {
+            // This function must be called when DOM is loaded
+            // and close the nag message before the user sees it
+            getLocalStorage();
+            if (userData.cookieAccepted === true) {
+                closeDialog(false); // no need to set it again, just close it
+            }
+        }
+    </script>
+    <!--
+		TODO: 
+		Add support for higher difficulty levels than 10 (just the numbers are shown, colors unknown for now)
+		Add a new page for the stats (Distance, Runes Hit, Missed Runes, Perfect Hits, Combos Activated in this order)
+		Add "Next" and "Previous" button to switch between Song Info and Stats page
+		
+	  -->
+    <script>
+        $("#body").imagesLoaded({
+            background: true
+        }, function(imgLoad) {
+            $("#preloader").fadeOut('slow');
+            $("#bottombeard").removeClass("toggle-off");
+        });
+    </script>
+</body>
+
+</html>
