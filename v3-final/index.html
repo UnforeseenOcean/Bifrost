@@ -1964,13 +1964,18 @@
         }
 
         function toggleExplicit(forceState) {
-            if (forceState == true) {
-                if (expState == false) {
-                    expState = true; // This should actually turn it on
+            
+            if (forceState != null) {
+                console.log("Toggling explicit", forceState);
+                expState = !forceState; // This should actually turn it on
+                if (forceState == false) {
                     $("#explicit-yn").prop("checked", true);
                     $("#explicit").addClass("toggle-off-alt-1");
+                } else {
+                    $("#explicit-yn").prop("checked", false);
+                    $("#explicit").removeClass("toggle-off-alt-1");
                 }
-            }
+            } else {
             if (expState == true) {
                 expState = false;
                 $("#explicit-yn").prop("checked", false);
@@ -1980,6 +1985,7 @@
                 $("#explicit-yn").prop("checked", true);
                 $("#explicit").addClass("toggle-off-alt-1");
             }
+        }
         }
         
         function makeItRain() {
